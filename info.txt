@@ -1,5 +1,0 @@
-ID Brasil = 76
-Colocar em Locations
-
-https://population.un.org/dataportalapi/api/v1/indicators
-Link para achar os indicadores
