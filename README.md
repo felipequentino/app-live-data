@@ -2,9 +2,7 @@
 
 ### Fonte dos dados: https://sidra.ibge.gov.br/home/pnadcm
 
-### Notebooks deployed: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/) 
-
-**Perguntar pro professor se pessoas ocupadas é empregadas, e vice-versa, já que tem outra fonte que menciona 'força de trabalho'.**
+**Notebooks deployed: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
 
 1. Informações que vou querer ter e seus melhores modelos para predição:
 
