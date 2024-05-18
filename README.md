@@ -1,6 +1,8 @@
 # app-live-data
 
-https://sidra.ibge.gov.br/home/pnadcm
+### Fonte dos dados: https://sidra.ibge.gov.br/home/pnadcm
+
+### Notebooks deployed: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/) 
 
 **Perguntar pro professor se pessoas ocupadas é empregadas, e vice-versa, já que tem outra fonte que menciona 'força de trabalho'.**
 
@@ -9,7 +11,7 @@ https://sidra.ibge.gov.br/home/pnadcm
  - População atual => ARIMA;
  - Nascimentos esse ano => ARIMA;
  - Nascimentos hoje => ARIMA;
- - Pessoas empregadas (fonte original => Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência (milhares));
+ - Pessoas empregadas (fonte original => Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência (milhares)) => ARIMA;
  - Pessoas desempregadas (fonte original => Pessoas de 14 anos ou mais de idade, desocupadas nas semana de referência (milhares));
 
 
