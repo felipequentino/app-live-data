@@ -1,15 +1,27 @@
-# app-live-data
+### Fonte dos Dados: [SIDRA - IBGE](https://sidra.ibge.gov.br/home/pnadcm)
 
-### Fonte dos dados: https://sidra.ibge.gov.br/home/pnadcm
+**Notebooks Implementados: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
 
-**Notebooks deployed: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
+#### 1. Informações e seus Modelos para Predição
 
-1. Informações que vou querer ter e seus melhores modelos para predição:
+- **População Atual**: ARIMA
+- **Nascimentos Este Ano**: ARIMA
+- **Nascimentos Hoje**: ARIMA
+- **Pessoas Empregadas**:
+  - Fonte Original: Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência (milhares)
+  - Modelo: ARIMA
+- **Pessoas Desempregadas**:
+  - Fonte Original: Pessoas de 14 anos ou mais de idade, desocupadas na semana de referência (milhares)
+  - Modelo: SARIMAX
 
- - População atual => ARIMA;
- - Nascimentos esse ano => ARIMA;
- - Nascimentos hoje => ARIMA;
- - Pessoas empregadas (fonte original => Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência (milhares)) => ARIMA;
- - Pessoas desempregadas (fonte original => Pessoas de 14 anos ou mais de idade, desocupadas nas semana de referência (milhares));
+#### 2. Novas Informações
 
-
+- **Quantidade de Bovinos Abatidos**
+- **Quantidade de Suínos Abatidos**
+- **Quantidade de Frangos Abatidos**
+- **Quantidade de Ovos de Galinha Produzidos**
+- **Custo do m² no Brasil: FORECAST DRIFT** 
+- **Custo do m² nas 5 Regiões do Brasil**
+- **Levantamento Sistemático da Produção Agrícola**
+- **Rendimento da População (habitual): ARIMA**
+- **Variação dos Itens do Brasil**
