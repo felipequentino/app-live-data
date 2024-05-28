@@ -1,26 +1,33 @@
 from sktime.forecasting.naive import NaiveForecaster
 from sktime.split import temporal_train_test_split
 from sktime.forecasting.arima import AutoARIMA
+from sktime.forecasting.sarimax import SARIMAX
 from datetime import datetime
 from django.db import models
 from utils import segundos_passados_no_mes, dias_no_mes
 import pandas as pd
 import numpy as np
-import json
 import time
 
 QUANTIDADE_DE_MESES_PARA_PREVER = 12
 
 class Predict():
         
-    def __init__(self, dataset_path):
+    def __init__(self, dataset_path, is_float=False, is_to_multiply=False):
         df = pd.read_csv(dataset_path)
         df = df.T
-        df = df.rename(columns={0:"populacao"})
         df.index = pd.to_datetime(df.index)
         df.index = df.index.to_period("M")
+
+        if is_float:
+            for i in range(len(df)):
+                converted_row = df[0][i].replace(',', '.')
+                df[0][i] = float(converted_row)
+
+        df = df.rename(columns={0:"populacao"})
         df.populacao = pd.to_numeric(df.populacao)
-        df.populacao *= 1000
+        if is_to_multiply:
+            df.populacao *= 1000
         y_train, y_test = temporal_train_test_split(df)
         fh = np.arange(len(y_test)+QUANTIDADE_DE_MESES_PARA_PREVER)+1
 
@@ -41,6 +48,12 @@ class Predict():
         y_arima = model.predict(fh=self.fh)
         return y_arima
 
+    def model_sarima(self):
+        model = SARIMAX()
+        model.fit(self.y_train)
+        y_sarima = model.predict(fh=self.fh)
+        return y_sarima
+    
     def predict_live(self):
         day_atual = datetime.now()
         # Calculando o número de segundos no mês atual
