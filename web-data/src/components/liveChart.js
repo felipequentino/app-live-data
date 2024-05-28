@@ -1,86 +1,82 @@
-import { Bar } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 import axios from 'axios';
 import Papa from 'papaparse';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
-
 export default {
-  name: 'LiveChart',
-  components: { Bar },
   data() {
     return {
       populationData: [],
+      occupationData: [],
+      unemployedData: [],
+      metroData: [],
+      incomeData: [],
       currentPopulationChange: 0,
-      interval: null,
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
+      currentOccupationChange: 0,
+      currentUnemployedChange: 0,
+      currentMetroChange: 0,
+      currentIncomeChange: 0,
+      populationInterval: null,
+      occupationInterval: null,
+      unemployedInterval: null,
+      metroInterval: null,
+      incomeInterval: null
     };
   },
-  computed: {
-    chartData() {
-      return {
-        labels: ['Population Change'],
-        datasets: [
-          {
-            label: 'Population Change',
-            backgroundColor: '#f87979',
-            data: [this.currentPopulationChange]
-          }
-        ]
-      };
-    }
-  },
   mounted() {
-    this.loadCSVData();
+    this.loadCSVData('/data/data_predicted/predict_populacao_2024-2025.csv', 'populationData', 'currentPopulationChange', 'populationInterval');
+    this.loadCSVData('/data/data_predicted/predict_ocupacao_2024-2025.csv', 'occupationData', 'currentOccupationChange', 'occupationInterval');
+    this.loadCSVData('/data/data_predicted/predict_desocupados_2024-2025.csv', 'unemployedData', 'currentUnemployedChange', 'unemployedInterval');
+    this.loadCSVData('/data/data_predicted/predict_metro_2024-2025.csv', 'metroData', 'currentMetroChange', 'metroInterval');
+    this.loadCSVData('/data/data_predicted/predict_rendimento_2024-2025.csv', 'incomeData', 'currentIncomeChange', 'incomeInterval');
   },
   beforeUnmount() {
-    clearInterval(this.interval);
+    clearInterval(this.populationInterval);
+    clearInterval(this.occupationInterval);
+    clearInterval(this.unemployedInterval);
+    clearInterval(this.metroInterval);
+    clearInterval(this.incomeInterval);
   },
   methods: {
-    async loadCSVData() {
+    async loadCSVData(url, dataKey, changeKey, intervalKey) {
       try {
-        const response = await axios.get('/data/predict_populacao_2024-2025.csv');
+        const response = await axios.get(url);
         const csvData = response.data;
         Papa.parse(csvData, {
           header: true,
           complete: (result) => {
-            this.populatePopulationData(result.data);
-            this.startPopulationChangeCalculation();
+            this.populateData(result.data, dataKey);
+            this.startChangeCalculation(dataKey, changeKey, intervalKey);
           }
         });
       } catch (error) {
         console.error('Error loading CSV data:', error);
       }
     },
-    populatePopulationData(data) {
-      this.populationData = data.map(row => parseFloat(row.populacao));
+    populateData(data, dataKey) {
+      this[dataKey] = data.map(row => parseFloat(row.populacao));
     },
-    startPopulationChangeCalculation() {
-      if (this.populationData.length < 2) {
-        console.error('Not enough data to calculate population change.');
+    startChangeCalculation(dataKey, changeKey, intervalKey) {
+      if (this[dataKey].length < 2) {
+        console.error('Not enough data to calculate change.');
         return;
       }
 
-      const initialPopulation = this.populationData[0];
-      const monthlyPopulationChange = this.calculateMonthlyPopulationChange();
-      const predictPerSecond = this.calculatePredictPerSecond(monthlyPopulationChange);
+      const initialData = this[dataKey][0];
+      const monthlyChange = this.calculateMonthlyChange(dataKey);
+      const predictPerSecond = this.calculatePredictPerSecond(monthlyChange);
 
-      this.updateCurrentPopulationChange(initialPopulation, predictPerSecond);
-      this.interval = setInterval(() => {
-        this.currentPopulationChange += predictPerSecond;
+      this.updateCurrentChange(initialData, predictPerSecond, changeKey);
+      this[intervalKey] = setInterval(() => {
+        this[changeKey] += predictPerSecond;
       }, 1000);
     },
-    calculateMonthlyPopulationChange() {
-      return this.populationData[1] - this.populationData[0];
+    calculateMonthlyChange(dataKey) {
+      return this[dataKey][1] - this[dataKey][0];
     },
-    calculatePredictPerSecond(monthlyPopulationChange) {
+    calculatePredictPerSecond(monthlyChange) {
       const now = new Date();
       const secondsInMonth = this.calculateSecondsInMonth(now);
 
-      return monthlyPopulationChange / secondsInMonth;
+      return monthlyChange / secondsInMonth;
     },
     calculateSecondsElapsed(now) {
       const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -90,11 +86,11 @@ export default {
       const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
       return daysInMonth * 24 * 60 * 60;
     },
-    updateCurrentPopulationChange(initialPopulation, predictPerSecond) {
+    updateCurrentChange(initialData, predictPerSecond, changeKey) {
       const now = new Date();
       const secondsElapsed = this.calculateSecondsElapsed(now);
 
-      this.currentPopulationChange = initialPopulation + predictPerSecond * secondsElapsed;
+      this[changeKey] = initialData + predictPerSecond * secondsElapsed;
     }
   }
 };
