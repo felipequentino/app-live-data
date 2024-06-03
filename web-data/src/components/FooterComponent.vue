@@ -17,8 +17,8 @@
     padding: 10px;
     text-align: center;
     width: 100%;
+    position: fixed;
     bottom: 0;
-    position: absolute;
 }
   </style>
   
