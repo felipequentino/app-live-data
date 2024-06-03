@@ -1,15 +1,15 @@
 <template>
   <div class="data-source-container">
-    <h1>FONTE DE DADOS</h1>
+    <h1>Fonte de Dados</h1>
     <div class="data-source-info">
       <div class="data-source-item">
-        <div class="font-weight-medium">
-          As fontes de dados usadas no Ludiico Live são provenientes do Sistema IBGE de Recuperação Automática <br> <a href="https://sidra.ibge.gov.br/home/pnadcm" target="_blank">(SIDRA)</a>.
+        <div>
+          As fontes de dados usadas no Ludiico Live são provenientes do Sistema IBGE de Recuperação Automática <br> <a
+            href="https://sidra.ibge.gov.br/home/pnadcm" target="_blank">SIDRA</a>.
         </div>
       </div>
-      <div>
+      <div class="data-source-item">
         <p>A partir dessa fonte de dados, são feitas previsões estatísticas a fim de obter informações em "live".</p>
-      
       </div>
     </div>
   </div>
@@ -26,23 +26,25 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
 }
 
-h1 {
-  margin-bottom: 20px;
+h1{
+  margin-top: 6rem;
+  font-size: 2.5em;
+  color: rgb(0, 51, 102);
 }
 
 .data-source-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
+  margin-top: 4rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 4rem;
+  border-radius: 8px;
+  gap: 1rem;
+} 
 
 .data-source-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  font-size: 1.2em
 }
-
 </style>
