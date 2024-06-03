@@ -9,6 +9,8 @@ export default {
       unemployedData: [],
       metroData: [],
       incomeData: [],
+      birthsToday: 0,
+      birthsPerSecond: 0,
       currentPopulationChange: 0,
       currentOccupationChange: 0,
       currentUnemployedChange: 0,
@@ -18,7 +20,8 @@ export default {
       occupationInterval: null,
       unemployedInterval: null,
       metroInterval: null,
-      incomeInterval: null
+      incomeInterval: null,
+      birthsInterval: null,
     };
   },
   mounted() {
@@ -30,6 +33,7 @@ export default {
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
+    clearInterval(this.birthsInterval);
     clearInterval(this.occupationInterval);
     clearInterval(this.unemployedInterval);
     clearInterval(this.metroInterval);
@@ -45,6 +49,9 @@ export default {
           complete: (result) => {
             this.populateData(result.data, dataKey);
             this.startChangeCalculation(dataKey, changeKey, intervalKey);
+            if (dataKey === 'populationData') {
+              this.calculateBirthsToday(dataKey);
+            }
           }
         });
       } catch (error) {
@@ -60,8 +67,10 @@ export default {
         return;
       }
 
-      const initialData = this[dataKey][0];
-      const monthlyChange = this.calculateMonthlyChange(dataKey);
+      const now = new Date();
+      const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
+      const initialData = this[dataKey][currentMonthIndex];
+      const monthlyChange = this.calculateMonthlyChange(dataKey, currentMonthIndex);
       const predictPerSecond = this.calculatePredictPerSecond(monthlyChange);
 
       this.updateCurrentChange(initialData, predictPerSecond, changeKey);
@@ -69,8 +78,12 @@ export default {
         this[changeKey] += predictPerSecond;
       }, 1000);
     },
-    calculateMonthlyChange(dataKey) {
-      return this[dataKey][1] - this[dataKey][0];
+    calculateMonthlyChange(dataKey, currentMonthIndex) {
+      if (currentMonthIndex >= this[dataKey].length - 1) {
+        console.error('Not enough data to calculate monthly change for the current month.');
+        return 0;
+      }
+      return this[dataKey][currentMonthIndex + 1] - this[dataKey][currentMonthIndex];
     },
     calculatePredictPerSecond(monthlyChange) {
       const now = new Date();
@@ -91,6 +104,38 @@ export default {
       const secondsElapsed = this.calculateSecondsElapsed(now);
 
       this[changeKey] = initialData + predictPerSecond * secondsElapsed;
+    },
+    calculateBirthsToday(dataKey) {
+      const now = new Date();
+      const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
+    
+      if (currentMonthIndex >= this[dataKey].length - 1) {
+        console.error('Not enough data to calculate births today.');
+        return;
+      }
+    
+      const populationToday = this[dataKey][currentMonthIndex];
+      const populationNextMonth = this[dataKey][currentMonthIndex + 1];
+      const monthlyBirths = populationNextMonth - populationToday;
+    
+      // Calcular o número de dias no mês atual
+      const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+      const birthsToday = monthlyBirths / daysInCurrentMonth;
+    
+      this.birthsPerSecond = birthsToday / (24 * 60 * 60);
+      this.updateBirthsToday();
+    
+      this.birthsInterval = setInterval(() => {
+        this.birthsToday += this.birthsPerSecond;
+      }, 1000);
+    },
+    
+    updateBirthsToday() {
+      const now = new Date();
+      const secondsElapsedToday = (now - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
+    
+      this.birthsToday = this.birthsPerSecond * secondsElapsedToday;
     }
+    
   }
 };
