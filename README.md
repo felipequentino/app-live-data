@@ -25,3 +25,6 @@
 - **Levantamento Sistemático da Produção Agrícola**
 - **Rendimento da População (habitual): ARIMA**
 - **Variação dos Itens do Brasil**
+
+### Deploy
+- **[Ludiico Live](https://ludiico-live.vercel.app/)**
