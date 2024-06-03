@@ -1,17 +1,16 @@
 <template>
   <div class="data-source-container">
-    <h1>FONTE DE DADOS</h1>
-    <div class="data-source-info">
-    </div>
-    <div class="font-weight-medium">
-      O Ludiico Live é um Programa Institucional de Bolsas de Iniciação em Desenvolvimento Tecnológico e Inovação (PIBITI), com foco em exibir informações em tempo real sobre o Brasil. O projeto está sendo desenvolvido através do grupo Ludiico, pelo aluno 
-      <a :href="lattesAluno" target="_blank" class="lattes-link" @mouseover="showTooltip('lattes do aluno')" @mouseleave="hideTooltip">
-        João F. Quentino
-      </a>
-      e pelo orientador 
-      <a :href="lattesOrientador" target="_blank" class="lattes-link" @mouseover="showTooltip('lattes do orientador')" @mouseleave="hideTooltip">
-        Hendrik T. Macedo
-      </a>.
+    <h1>Sobre o Ludiico Live</h1>
+    <div class="data-source-item">
+      <p>O Ludiico Live é um Programa Institucional de Bolsas de Iniciação em Desenvolvimento Tecnológico e Inovação
+        (PIBITI), com foco em exibir informações em tempo real sobre o Brasil. O projeto está sendo desenvolvido através
+        do grupo Ludiico, pelo aluno <a :href="lattesAluno" target="_blank" class="lattes-link"
+          @mouseover="showTooltip('lattes do aluno')" @mouseleave="hideTooltip">
+          João F. Quentino
+        </a> e pelo orientador <a :href="lattesOrientador" target="_blank" class="lattes-link"
+          @mouseover="showTooltip('lattes do orientador')" @mouseleave="hideTooltip">
+          Hendrik T. Macedo
+        </a></p>
     </div>
     <div v-if="tooltip" class="tooltip">{{ tooltip }}</div>
   </div>
@@ -22,8 +21,8 @@ export default {
   name: 'FonteDeDadosPage',
   data() {
     return {
-      lattesAluno: 'http://lattes.cnpq.br/1771023207813424', 
-      lattesOrientador: 'http://lattes.cnpq.br/7119477874134821', 
+      lattesAluno: 'http://lattes.cnpq.br/1771023207813424',
+      lattesOrientador: 'http://lattes.cnpq.br/7119477874134821',
       tooltip: ''
     };
   },
@@ -49,7 +48,9 @@ export default {
 }
 
 h1 {
-  margin-bottom: 20px;
+  margin-top: 6rem;
+  font-size: 2.5rem;
+  color: rgb(0, 39, 79);
 }
 
 .data-source-info {
@@ -60,8 +61,16 @@ h1 {
 
 .data-source-item {
   display: flex;
+  width: 60vw;
   align-items: center;
-  margin-bottom: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  margin-top: 4rem;
+
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
 .font-weight-medium {
