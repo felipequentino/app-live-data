@@ -14,22 +14,18 @@
   .header {
     background-color: #3b5998;
     color: white;
-    padding: 20px;
+    padding: 1.2rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  .navbar {
-    margin-top: 10px;
-  }
-  
   .navbar ul {
     list-style: none;
     padding: 0;
     display: flex;
-    gap: 20px;
+    gap: 1.2rem;
   }
   
   .navbar ul li {
