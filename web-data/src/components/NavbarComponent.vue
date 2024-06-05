@@ -13,14 +13,14 @@
         <img src="@/assets/logo1.png" alt="Live Data Logo" class="navbar-logo">
       </v-app-bar>
 
-      <v-navigation-drawer class="navBarContainer" v-model="drawer" :location="$vuetify.display.mobile ? 'bottom' : undefined" temporary>
+      <v-navigation-drawer v-model="drawer" :location="$vuetify.display.mobile ? 'bottom' : undefined" temporary>
         <v-list>
           <v-list-item v-for="(item, i) in items" :key="i">
-            <a @click.prevent="navigateTo(item.value)" class="v-list-item">
+            <router-link :to="item.value" class="v-list-item v-list-item" active-class="v-list-item--active">
               <v-list-item-content>
                 <v-list-item-title class="item" v-text="item.title"></v-list-item-title>
               </v-list-item-content>
-            </a>
+            </router-link>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
@@ -61,6 +61,7 @@ export default {
 .item {
   font-size: 1.2em;
   font-weight: 500;
+  color: black;
   cursor: pointer;
   border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
