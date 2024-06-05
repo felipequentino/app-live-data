@@ -11,6 +11,11 @@
       <div class="data-source-item">
         <p>A partir dessa fonte de dados, são feitas previsões estatísticas a fim de obter informações em "live".</p>
       </div>
+      <div class="data-source-item">
+        <p>
+          Ressaltamos que o projeto está sendo atualizado constantemente, e em breve contará com mais dados em real time.
+        </p>
+      </div>
     </div>
   </div>
 </template>
