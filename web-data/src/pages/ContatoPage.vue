@@ -1,4 +1,3 @@
-
 <template>
   <div class="contact-container">
     <h1>Entre em Contato</h1>
@@ -13,11 +12,11 @@
       </div>
       <div class="social">
         <h2>Outras formas de me encontrar</h2>
-        <a href="https://github.com/felipequentino">
-          GITHUB <!-- GITHUB coloque a logo aqui  -->
+        <a href="https://github.com/felipequentino" target="_blank">
+          <font-awesome-icon :icon="['fab', 'github']" size="2x" />
         </a>
-        <a href="https://www.linkedin.com/in/felipequentino">
-          LINKEDIN <!-- GITHUB coloque a logo aqui  -->
+        <a href="https://www.linkedin.com/in/felipequentino" target="_blank">
+          <font-awesome-icon :icon="['fab', 'linkedin']" size="2x" />
         </a>
       </div>
     </div>
@@ -78,11 +77,9 @@ h1 {
 
 .social a {
   text-decoration: none;
-  color:  rgb(0, 44, 88);
+  color: rgb(0, 44, 88);
   font-size: 1em;
   display: flex;
   align-items: center;
-
 }
-
 </style>
