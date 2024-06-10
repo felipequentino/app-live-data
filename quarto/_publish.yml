@@ -1,0 +1,8 @@
+- source: populacao.qmd
+  quarto-pub:
+    - id: 955f8a63-9e50-410d-910d-8eceb5bf3c2a
+      url: 'https://felipequentino.quarto.pub/previsão-da-população-do-brasil-através-de-séries-temporais'
+- source: project
+  quarto-pub:
+    - id: 76257045-d6f2-4954-b682-8baab0346ee3
+      url: 'https://felipequentino.quarto.pub/series-temporais'
