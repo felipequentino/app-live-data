@@ -1,5 +1,6 @@
-### Fonte dos Dados: [SIDRA - IBGE](https://sidra.ibge.gov.br/home/pnadcm)
-
+### Fonte dos Dados: 
+[SIDRA - IBGE](https://sidra.ibge.gov.br/home/pnadcm)
+[Sistema de Estatísticas Vitais](https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=o-que-e)
 **Notebooks Implementados: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
 
 #### 1. Informações e seus Modelos para Predição
@@ -25,6 +26,7 @@
 - **Levantamento Sistemático da Produção Agrícola**
 - **Rendimento da População (habitual): ARIMA**
 - **Variação dos Itens do Brasil**
+- **Óbitos por dia no Brasil: SARIMAX**
 
 ### Deploy
 - **[Ludiico Live](https://ludiico-live.vercel.app/)**

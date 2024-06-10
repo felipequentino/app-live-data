@@ -1,1 +1,9 @@
 /predict/__pycache__
+notebooks/.quarto/
+notebooks/.venv
+notebooks/populacao_files
+notebooks/.ipynb_checkpoints
+notebooks/_site
+notebooks/populacao.html
+notebooks/styles.css
+
