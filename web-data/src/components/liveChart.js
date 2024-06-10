@@ -12,10 +12,13 @@ export default {
       incomeData: [],
       deathsData: [],
       birthsData: [],
+      birthsThisYearData: [],
       birthsToday: 0,
       birthsPerSecond: 0,
+      birthsThisYear: 0,
       deathsToday: 0,
       deathsPerSecond: 0,
+      deathsThisYear: 0,
       currentPopulationChange: 0,
       currentOccupationChange: 0,
       currentUnemployedChange: 0,
@@ -65,6 +68,9 @@ export default {
             }
             if (dataKey === 'birthsData') {
               this.calculateBirthsToday(dataKey);
+            }
+            if (dataKey === 'birthsThisYear') {
+              this.calculateBirthsThisYear(dataKey);
             }
           }
         });
@@ -122,18 +128,26 @@ export default {
       const daysInCurrentMonth = now.daysInMonth;
       const deathsMonth = this[dataKey][currentMonthIndex];
       const deathsToday = deathsMonth / daysInCurrentMonth;
+      const secondsElapsedThisYear = now.diff(now.startOf('year'), 'seconds').seconds;
 
+      
       this.deathsPerSecond = deathsToday / (24 * 60 * 60);
+      if (!this.deathsThisYearBool) {
+        this.deathsThisYear = Math.round(this.deathsPerSecond * secondsElapsedThisYear);
+        this.deathsThisYearBool = true; // Initialize deathsThisYear with the value up to now 
+      }
       this.updateDeathsToday(now);
-
+      
       this.deathsInterval = setInterval(() => {
         this.deathsToday += this.deathsPerSecond;
+        this.deathsThisYear += this.deathsPerSecond; // Increment deathsThisYear
       }, 1000);
     },
     
     updateDeathsToday(now) {
       const secondsElapsedToday = now.diff(now.startOf('day'), 'seconds').seconds;
-      this.deathsToday = this.deathsPerSecond * secondsElapsedToday;
+      this.deathsToday = Math.round(this.deathsPerSecond * secondsElapsedToday);
+      this.deathsThisYear += this.deathsToday; // Initialize deathsThisYear with the value up to now
     },
 
     calculateBirthsToday(dataKey) {
@@ -142,18 +156,26 @@ export default {
       const daysInCurrentMonth = now.daysInMonth;
       const birthsMonth = this[dataKey][currentMonthIndex];
       const birthsToday = birthsMonth / daysInCurrentMonth;
+      const secondsElapsedThisYear = now.diff(now.startOf('year'), 'seconds').seconds;
 
       this.birthsPerSecond = birthsToday / (24 * 60 * 60);
+      if (!this.birthsYearCountBool) {
+        this.birthsThisYear = Math.round(this.birthsPerSecond * secondsElapsedThisYear);
+        this.birthsYearCountBool = true; // Initialize birthsThisYear with the value up to now
+      }
+
       this.updateBirthsToday(now);
 
       this.birthsInterval = setInterval(() => {
         this.birthsToday += this.birthsPerSecond;
+        this.birthsThisYear += this.birthsPerSecond; 
       }, 1000);
     },
 
     updateBirthsToday(now) {
       const secondsElapsedToday = now.diff(now.startOf('day'), 'seconds').seconds;
-      this.birthsToday = this.birthsPerSecond * secondsElapsedToday;
+      this.birthsToday = Math.round(this.birthsPerSecond * secondsElapsedToday);
+      this.birthsThisYear += this.birthsToday; // Initialize birthsThisYear with the value up to now
     },
   }
 };
