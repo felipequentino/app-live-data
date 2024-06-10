@@ -9,19 +9,26 @@ export default {
       unemployedData: [],
       metroData: [],
       incomeData: [],
+      deathsData: [],
+      birthsData: [],
       birthsToday: 0,
       birthsPerSecond: 0,
+      deathsToday: 0,
+      deathsPerSecond: 0,
       currentPopulationChange: 0,
       currentOccupationChange: 0,
       currentUnemployedChange: 0,
       currentMetroChange: 0,
       currentIncomeChange: 0,
+      currentDeathsChange: 0,
+      currentBirthsChange: 0,
       populationInterval: null,
       occupationInterval: null,
       unemployedInterval: null,
       metroInterval: null,
       incomeInterval: null,
       birthsInterval: null,
+      deathsInterval: null
     };
   },
   mounted() {
@@ -30,10 +37,13 @@ export default {
     this.loadCSVData('/data/data_predicted/predict_desocupados_2024-2025.csv', 'unemployedData', 'currentUnemployedChange', 'unemployedInterval');
     this.loadCSVData('/data/data_predicted/predict_metro_2024-2025.csv', 'metroData', 'currentMetroChange', 'metroInterval');
     this.loadCSVData('/data/data_predicted/predict_rendimento_2024-2025.csv', 'incomeData', 'currentIncomeChange', 'incomeInterval');
+    this.loadCSVData('/data/data_predicted/predict_mortes_2024-2025.csv', 'deathsData', 'currentDeathsChange', 'deathsInterval');
+    this.loadCSVData('/data/data_predicted/predict_nascimentos_2024-2025.csv', 'birthsData', 'currentBirthsChange', 'birthsInterval')
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
     clearInterval(this.birthsInterval);
+    clearInterval(this.deathsInterval);
     clearInterval(this.occupationInterval);
     clearInterval(this.unemployedInterval);
     clearInterval(this.metroInterval);
@@ -49,7 +59,10 @@ export default {
           complete: (result) => {
             this.populateData(result.data, dataKey);
             this.startChangeCalculation(dataKey, changeKey, intervalKey);
-            if (dataKey === 'populationData') {
+            if (dataKey === 'deathsData') {
+              this.calculateDeathsToday(dataKey);
+            }
+            if (dataKey == 'birthsData') {
               this.calculateBirthsToday(dataKey);
             }
           }
@@ -105,37 +118,49 @@ export default {
 
       this[changeKey] = initialData + predictPerSecond * secondsElapsed;
     },
+
+    calculateDeathsToday(dataKey) {
+      const now = new Date();
+      const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
+      const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+      const deathsMonth = this[dataKey][currentMonthIndex]
+      const deathsToday = deathsMonth / daysInCurrentMonth;
+
+      this.deathsPerSecond = deathsToday / (24 * 60 * 60);
+      this.updateDeathsToday();
+
+      this.deathsInterval = setInterval(() => {
+        this.deathsToday += this.deathsPerSecond;
+      }, 1000);
+    },
+    
+    updateDeathsToday() {
+      const now = new Date();
+      const secondsElapsedToday = (now - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
+    
+      this.deathsToday = this.deathsPerSecond * secondsElapsedToday;
+    },
+
     calculateBirthsToday(dataKey) {
       const now = new Date();
       const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
-    
-      if (currentMonthIndex >= this[dataKey].length - 1) {
-        console.error('Not enough data to calculate births today.');
-        return;
-      }
-    
-      const populationToday = this[dataKey][currentMonthIndex];
-      const populationNextMonth = this[dataKey][currentMonthIndex + 1];
-      const monthlyBirths = populationNextMonth - populationToday;
-    
-      // Calcular o número de dias no mês atual
       const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-      const birthsToday = monthlyBirths / daysInCurrentMonth;
-    
+      const birthsMonth = this[dataKey][currentMonthIndex]
+      const birthsToday = birthsMonth / daysInCurrentMonth;
+
       this.birthsPerSecond = birthsToday / (24 * 60 * 60);
       this.updateBirthsToday();
-    
+
       this.birthsInterval = setInterval(() => {
         this.birthsToday += this.birthsPerSecond;
       }, 1000);
     },
-    
+
     updateBirthsToday() {
       const now = new Date();
       const secondsElapsedToday = (now - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
     
       this.birthsToday = this.birthsPerSecond * secondsElapsedToday;
-    }
-    
+    },
   }
 };

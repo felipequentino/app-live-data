@@ -9,6 +9,7 @@
             <v-card-text>
               <p>População atual: <span>{{ Math.round(currentPopulationChange) }}</span></p>
               <p>Nascimentos hoje: <span>{{ Math.round(birthsToday) }}</span></p>
+              <p>Mortes hoje: <span>{{ Math.round(deathsToday) }}</span></p>
             </v-card-text>
           </v-card>
         </v-col>
