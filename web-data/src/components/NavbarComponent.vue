@@ -5,11 +5,6 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Ludiico Live</v-toolbar-title>
         <v-spacer></v-spacer>
-        <template v-if="$vuetify.display.mdAndUp">
-          <v-btn icon="mdi-magnify"></v-btn>
-          <v-btn icon="mdi-filter"></v-btn>
-        </template>
-        <v-btn icon="mdi-dots-vertical"></v-btn>
         <img src="@/assets/logo1.png" alt="Live Data Logo" class="navbar-logo">
       </v-app-bar>
 
