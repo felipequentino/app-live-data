@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Papa from 'papaparse';
+const { DateTime } = require('luxon');
 
 export default {
   data() {
@@ -62,7 +63,7 @@ export default {
             if (dataKey === 'deathsData') {
               this.calculateDeathsToday(dataKey);
             }
-            if (dataKey == 'birthsData') {
+            if (dataKey === 'birthsData') {
               this.calculateBirthsToday(dataKey);
             }
           }
@@ -80,13 +81,13 @@ export default {
         return;
       }
 
-      const now = new Date();
-      const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
+      const now = DateTime.now().setZone('America/Sao_Paulo');
+      const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
       const initialData = this[dataKey][currentMonthIndex];
       const monthlyChange = this.calculateMonthlyChange(dataKey, currentMonthIndex);
-      const predictPerSecond = this.calculatePredictPerSecond(monthlyChange);
+      const predictPerSecond = this.calculatePredictPerSecond(monthlyChange, now);
 
-      this.updateCurrentChange(initialData, predictPerSecond, changeKey);
+      this.updateCurrentChange(initialData, predictPerSecond, changeKey, now);
       this[intervalKey] = setInterval(() => {
         this[changeKey] += predictPerSecond;
       }, 1000);
@@ -98,68 +99,60 @@ export default {
       }
       return this[dataKey][currentMonthIndex + 1] - this[dataKey][currentMonthIndex];
     },
-    calculatePredictPerSecond(monthlyChange) {
-      const now = new Date();
+    calculatePredictPerSecond(monthlyChange, now) {
       const secondsInMonth = this.calculateSecondsInMonth(now);
-
       return monthlyChange / secondsInMonth;
     },
     calculateSecondsElapsed(now) {
-      const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-      return (now - firstDayOfMonth) / 1000; // Convert milliseconds to seconds
+      const firstDayOfMonth = now.startOf('month');
+      return now.diff(firstDayOfMonth, 'seconds').seconds;
     },
     calculateSecondsInMonth(now) {
-      const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+      const daysInMonth = now.daysInMonth;
       return daysInMonth * 24 * 60 * 60;
     },
-    updateCurrentChange(initialData, predictPerSecond, changeKey) {
-      const now = new Date();
+    updateCurrentChange(initialData, predictPerSecond, changeKey, now) {
       const secondsElapsed = this.calculateSecondsElapsed(now);
-
       this[changeKey] = initialData + predictPerSecond * secondsElapsed;
     },
 
     calculateDeathsToday(dataKey) {
-      const now = new Date();
-      const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
-      const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-      const deathsMonth = this[dataKey][currentMonthIndex]
+      const now = DateTime.now().setZone('America/Sao_Paulo');
+      const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
+      const daysInCurrentMonth = now.daysInMonth;
+      const deathsMonth = this[dataKey][currentMonthIndex];
       const deathsToday = deathsMonth / daysInCurrentMonth;
 
       this.deathsPerSecond = deathsToday / (24 * 60 * 60);
-      this.updateDeathsToday();
+      this.updateDeathsToday(now);
 
       this.deathsInterval = setInterval(() => {
         this.deathsToday += this.deathsPerSecond;
       }, 1000);
     },
     
-    updateDeathsToday() {
-      const now = new Date();
-      const secondsElapsedToday = (now - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
-    
+    updateDeathsToday(now) {
+      const secondsElapsedToday = now.diff(now.startOf('day'), 'seconds').seconds;
       this.deathsToday = this.deathsPerSecond * secondsElapsedToday;
     },
 
     calculateBirthsToday(dataKey) {
-      const now = new Date();
-      const currentMonthIndex = now.getMonth(); // get the current month index (0-11)
-      const daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-      const birthsMonth = this[dataKey][currentMonthIndex]
+      const now = DateTime.now().setZone('America/Sao_Paulo');
+      const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
+      const daysInCurrentMonth = now.daysInMonth;
+      const birthsMonth = this[dataKey][currentMonthIndex];
       const birthsToday = birthsMonth / daysInCurrentMonth;
 
       this.birthsPerSecond = birthsToday / (24 * 60 * 60);
-      this.updateBirthsToday();
+      this.updateBirthsToday(now);
 
       this.birthsInterval = setInterval(() => {
         this.birthsToday += this.birthsPerSecond;
       }, 1000);
     },
 
-    updateBirthsToday() {
-      const now = new Date();
-      const secondsElapsedToday = (now - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 1000;
-    
+    updateBirthsToday(now) {
+      const secondsElapsedToday = now.diff(now.startOf('day'), 'seconds').seconds;
       this.birthsToday = this.birthsPerSecond * secondsElapsedToday;
     },
   }
