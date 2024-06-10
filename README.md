@@ -1,7 +1,7 @@
 ### Fonte dos Dados: 
-[SIDRA - IBGE](https://sidra.ibge.gov.br/home/pnadcm)
-[Sistema de Estatísticas Vitais](https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=o-que-e)
-**Notebooks Implementados: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
+- [SIDRA - IBGE](https://sidra.ibge.gov.br/home/pnadcm)
+- [Sistema de Estatísticas Vitais](https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=o-que-e)
+- **Notebooks Implementados: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
 
 #### 1. Informações e seus Modelos para Predição
 
