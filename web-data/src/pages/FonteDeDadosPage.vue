@@ -4,16 +4,19 @@
     <div class="data-source-info">
       <div class="data-source-item">
         <div>
-          As fontes de dados usadas no Ludiico Live são provenientes do Sistema IBGE de Recuperação Automática <br> <a
-            href="https://sidra.ibge.gov.br/home/pnadcm" target="_blank">SIDRA</a>.
+          As fontes de dados usadas no Ludiico Live são provenientes do Sistema IBGE de Recuperação Automática e do Sistema de Estatísticas Vitais (IBGE)<br><br><a
+            href="https://sidra.ibge.gov.br/home/pnadcm" target="_blank">SIDRA</a>
+            <br>
+            <a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=resultados">Sistema de Estatísticas Vitais</a>
+            <br>
         </div>
       </div>
       <div class="data-source-item">
-        <p>A partir dessa fonte de dados, são feitas previsões estatísticas a fim de obter informações em "live".</p>
+        <p>A partir dessa fonte de dados, são feitas previsões estatísticas a fim de obter informações em tempo real.</p>
       </div>
       <div class="data-source-item">
         <p>
-          Ressaltamos que o projeto está sendo atualizado constantemente, e em breve contará com mais dados em real time.
+          Ressaltamos que o projeto está sendo atualizado constantemente, e em breve contará com mais dados em tempo real.
         </p>
       </div>
     </div>
