@@ -21,8 +21,21 @@
             <v-card-text>
               <p>Pessoas empregadas: <span>{{ Math.round(currentOccupationChange) }}</span></p>
               <p>Pessoas desempregadas: <span>{{ Math.round(currentUnemployedChange) }}</span></p>
-              <p>Valor médio do m² no Brasil: R$ <span>{{ Math.round(currentMetroChange) }}</span></p>
               <p>Média salarial: R$ <span>{{ Math.round(currentIncomeChange) }}</span></p>
+              <p>Valor médio do m² no Brasil: R$ <span>{{ currentMetroChange.toFixed(2) }}</span></p>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col class="cardContainer">
+          <v-card class="section regions-section">
+            <v-card-title class="section-title">Regiões</v-card-title>
+            <v-card-text>
+              <p>Valor médio do m² no Centro-Oeste: R$ <span>{{ currentCentroOesteMetroChange.toFixed(2) }}</span></p>
+              <p>Valor médio do m² no Nordeste: R$ <span>{{ currentNordesteMetroChange.toFixed(2) }}</span></p>
+              <p>Valor médio do m² no Sudeste: R$ <span>{{ currentSudesteMetroChange.toFixed(2) }}</span></p>
+              <p>Valor médio do m² no Norte: R$ <span>{{ currentNorteMetroChange.toFixed(2) }}</span></p>
+              <p>Valor médio do m² no Sul: R$ <span>{{ currentSulMetroChange.toFixed(2) }}</span></p>
+
             </v-card-text>
           </v-card>
         </v-col>

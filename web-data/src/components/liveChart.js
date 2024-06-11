@@ -9,6 +9,11 @@ export default {
       occupationData: [],
       unemployedData: [],
       metroData: [],
+      metroCentroOesteData: [],
+      metroNordesteData: [],
+      metroNorteData: [],
+      metroSudesteData: [],
+      metroSulData: [],
       incomeData: [],
       deathsData: [],
       birthsData: [],
@@ -23,6 +28,11 @@ export default {
       currentOccupationChange: 0,
       currentUnemployedChange: 0,
       currentMetroChange: 0,
+      currentCentroOesteMetroChange: 0,
+      currentNordesteMetroChange: 0,
+      currentNorteMetroChange: 0,
+      currentSudesteMetroChange: 0,
+      currentSulMetroChange: 0,
       currentIncomeChange: 0,
       currentDeathsChange: 0,
       currentBirthsChange: 0,
@@ -30,6 +40,11 @@ export default {
       occupationInterval: null,
       unemployedInterval: null,
       metroInterval: null,
+      centroOesteMetroInterval: null,
+      nordesteMetroInterval: null,
+      norteMetroInterval: null,
+      sudesteMetroInterval: null,
+      sulMetroInterval: null,
       incomeInterval: null,
       birthsInterval: null,
       deathsInterval: null
@@ -43,6 +58,11 @@ export default {
     this.loadCSVData('/data/data_predicted/predict_rendimento_2024-2025.csv', 'incomeData', 'currentIncomeChange', 'incomeInterval');
     this.loadCSVData('/data/data_predicted/predict_mortes_2024-2025.csv', 'deathsData', 'currentDeathsChange', 'deathsInterval');
     this.loadCSVData('/data/data_predicted/predict_nascimentos_2024-2025.csv', 'birthsData', 'currentBirthsChange', 'birthsInterval')
+    this.loadCSVData('/data/data_predicted/predict_metro_centro-oeste.csv', 'centroOesteMetroData', 'currentCentroOesteMetroChange', 'centroOesteMetroInterval')
+    this.loadCSVData('/data/data_predicted/predict_metro_nordeste.csv', 'nordesteMetroData', 'currentNordesteMetroChange', 'nordesteMetroInterval')
+    this.loadCSVData('/data/data_predicted/predict_metro_norte.csv', 'norteMetroData', 'currentNorteMetroChange', 'norteMetroInterval')
+    this.loadCSVData('/data/data_predicted/predict_metro_sudeste.csv', 'sudesteMetroData', 'currentSudesteMetroChange', 'sudesteMetroInterval')
+    this.loadCSVData('/data/data_predicted/predict_metro_sul.csv', 'sulMetroData', 'currentSulMetroChange', 'sulMetroInterval')
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
@@ -51,6 +71,10 @@ export default {
     clearInterval(this.occupationInterval);
     clearInterval(this.unemployedInterval);
     clearInterval(this.metroInterval);
+    clearInterval(this.centroOesteMetroInterval);
+    clearInterval(this.nordesteMetroInterval);
+    clearInterval(this.norteMetroInterval);
+    clearInterval(this.sudesteMetroInterval);
     clearInterval(this.incomeInterval);
   },
   methods: {
