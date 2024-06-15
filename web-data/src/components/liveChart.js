@@ -15,9 +15,11 @@ export default {
       metroSudesteData: [],
       metroSulData: [],
       incomeData: [],
+      incomeMassaData: [],
       deathsData: [],
       birthsData: [],
       birthsThisYearData: [],
+      deathsThisYearData: [],
       birthsToday: 0,
       birthsPerSecond: 0,
       birthsThisYear: 0,
@@ -34,6 +36,7 @@ export default {
       currentSudesteMetroChange: 0,
       currentSulMetroChange: 0,
       currentIncomeChange: 0,
+      currentIncomeMassaChange: 0,
       currentDeathsChange: 0,
       currentBirthsChange: 0,
       populationInterval: null,
@@ -46,6 +49,7 @@ export default {
       sudesteMetroInterval: null,
       sulMetroInterval: null,
       incomeInterval: null,
+      incomeMassaInterval: null,
       birthsInterval: null,
       deathsInterval: null
     };
@@ -57,12 +61,13 @@ export default {
     this.loadCSVData('/data/data_predicted/predict_metro_2024-2025.csv', 'metroData', 'currentMetroChange', 'metroInterval');
     this.loadCSVData('/data/data_predicted/predict_rendimento_2024-2025.csv', 'incomeData', 'currentIncomeChange', 'incomeInterval');
     this.loadCSVData('/data/data_predicted/predict_mortes_2024-2025.csv', 'deathsData', 'currentDeathsChange', 'deathsInterval');
-    this.loadCSVData('/data/data_predicted/predict_nascimentos_2024-2025.csv', 'birthsData', 'currentBirthsChange', 'birthsInterval')
-    this.loadCSVData('/data/data_predicted/predict_metro_centro-oeste.csv', 'centroOesteMetroData', 'currentCentroOesteMetroChange', 'centroOesteMetroInterval')
-    this.loadCSVData('/data/data_predicted/predict_metro_nordeste.csv', 'nordesteMetroData', 'currentNordesteMetroChange', 'nordesteMetroInterval')
-    this.loadCSVData('/data/data_predicted/predict_metro_norte.csv', 'norteMetroData', 'currentNorteMetroChange', 'norteMetroInterval')
-    this.loadCSVData('/data/data_predicted/predict_metro_sudeste.csv', 'sudesteMetroData', 'currentSudesteMetroChange', 'sudesteMetroInterval')
-    this.loadCSVData('/data/data_predicted/predict_metro_sul.csv', 'sulMetroData', 'currentSulMetroChange', 'sulMetroInterval')
+    this.loadCSVData('/data/data_predicted/predict_nascimentos_2024-2025.csv', 'birthsData', 'currentBirthsChange', 'birthsInterval');
+    this.loadCSVData('/data/data_predicted/predict_metro_centro-oeste.csv', 'centroOesteMetroData', 'currentCentroOesteMetroChange', 'centroOesteMetroInterval');
+    this.loadCSVData('/data/data_predicted/predict_metro_nordeste.csv', 'nordesteMetroData', 'currentNordesteMetroChange', 'nordesteMetroInterval');
+    this.loadCSVData('/data/data_predicted/predict_metro_norte.csv', 'norteMetroData', 'currentNorteMetroChange', 'norteMetroInterval');
+    this.loadCSVData('/data/data_predicted/predict_metro_sudeste.csv', 'sudesteMetroData', 'currentSudesteMetroChange', 'sudesteMetroInterval');
+    this.loadCSVData('/data/data_predicted/predict_metro_sul.csv', 'sulMetroData', 'currentSulMetroChange', 'sulMetroInterval');
+    this.loadCSVData('/data/data_predicted/predict_dinheiro_massa.csv', 'incomeMassaData', 'currentIncomeMassaChange', 'incomeMassaInterval' );
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
@@ -74,8 +79,10 @@ export default {
     clearInterval(this.centroOesteMetroInterval);
     clearInterval(this.nordesteMetroInterval);
     clearInterval(this.norteMetroInterval);
+    clearInterval(this.sulMetroInterval);
     clearInterval(this.sudesteMetroInterval);
     clearInterval(this.incomeInterval);
+    clearInterval(this.IncomeMassaInterval);
   },
   methods: {
     async loadCSVData(url, dataKey, changeKey, intervalKey) {
@@ -110,17 +117,21 @@ export default {
         console.error('Not enough data to calculate change.');
         return;
       }
-
+    
       const now = DateTime.now().setZone('America/Sao_Paulo');
       const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
       const initialData = this[dataKey][currentMonthIndex];
       const monthlyChange = this.calculateMonthlyChange(dataKey, currentMonthIndex);
       const predictPerSecond = this.calculatePredictPerSecond(monthlyChange, now);
-
+    
+      // Intervalo de 0,2 segundos
+      const updateInterval = 0.1; // em segundos
+      const predictPerUpdate = predictPerSecond * updateInterval;
+    
       this.updateCurrentChange(initialData, predictPerSecond, changeKey, now);
       this[intervalKey] = setInterval(() => {
-        this[changeKey] += predictPerSecond;
-      }, 1000);
+        this[changeKey] += predictPerUpdate;
+      }, updateInterval * 1000); // Convertendo para milissegundos
     },
     calculateMonthlyChange(dataKey, currentMonthIndex) {
       if (currentMonthIndex >= this[dataKey].length - 1) {

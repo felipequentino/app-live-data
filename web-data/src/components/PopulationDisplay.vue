@@ -23,6 +23,7 @@
               <p>Pessoas desempregadas: <span>{{ Math.round(currentUnemployedChange) }}</span></p>
               <p>Média salarial: R$ <span>{{ Math.round(currentIncomeChange) }}</span></p>
               <p>Valor médio do m² no Brasil: R$ <span>{{ currentMetroChange.toFixed(2) }}</span></p>
+              <p>Rendimento mensal de todos os brasileiros: R$ <span>{{ currentIncomeMassaChange.toFixed(2) }}</span></p>
             </v-card-text>
           </v-card>
         </v-col>
