@@ -28,6 +28,7 @@
 - **Rendimento da População (habitual): ARIMA**
 - **Variação dos Itens do Brasil**
 - **Óbitos por dia no Brasil: SARIMAX**
+- **Rendimento médio real de todos os trabalhos: SARIMAX**
 
 ### Deploy
 - **[Ludiico Live](https://ludiico-live.vercel.app/)**
