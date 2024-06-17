@@ -17,6 +17,7 @@ import FonteDeDadosPage from './pages/FonteDeDadosPage.vue';
 import HomePage from './pages/HomePage.vue';
 import './registerServiceWorker'
 
+
 const app = createApp(App);
 
 const routes = [
@@ -49,4 +50,5 @@ const vuetify = createVuetify({
 
 app.use(vuetify);
 app.use(router);
+
 app.mount('#app');
