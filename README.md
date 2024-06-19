@@ -30,5 +30,16 @@
 - **Óbitos por dia no Brasil: SARIMAX**
 - **Rendimento médio real de todos os trabalhos: SARIMAX**
 
+### 3. Tabelas do CENSO 2022 para predição
+
+**[Tabelas do CENSO 2022](https://sidra.ibge.gov.br/pesquisa/pnadca/tabelas)**
+
+- **Tabela população Homens X Mulheres https://sidra.ibge.gov.br/tabela/7109**
+- **Tabela ocupação Homens X Mulheres https://sidra.ibge.gov.br/tabela/7434**
+- **Tabala rendimento mensal Homens X Mulheres https://sidra.ibge.gov.br/tabela/7444**
+- **Tabela Analfabetismo Homens X Mulheres X Idade https://sidra.ibge.gov.br/tabela/7111**
+- **Tabela Empreendedores Homens X Mulheres https://sidra.ibge.gov.br/tabela/7202**
+
 ### Deploy
+
 - **[Ludiico Live](https://ludiico-live.vercel.app/)**
