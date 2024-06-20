@@ -9,23 +9,23 @@
             <v-card-text>
               <br />
               <TooltipComponent displayText="População atual: " tooltipText=" População - Total" />
-              <span>{{ Math.round(currentPopulationChange) }}</span>
+              <span>{{ Math.round(currentPopulationChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Nascimentos esse ano: " tooltipText="Nascidos vivos - Total no ano de 2024" />
-              <span>{{ Math.round(birthsThisYear) }}</span>
+              <span>{{ Math.round(birthsThisYear).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Nascimentos hoje: " tooltipText="Nascidos vivos - Hoje" />
-              <span>{{ Math.round(birthsToday) }}</span>
+              <span>{{ Math.round(birthsToday).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Mortes esse ano: " tooltipText="Óbitos - Total no ano de 2024" />
-              <span>{{ Math.round(deathsThisYear) }}</span>
+              <span>{{ Math.round(deathsThisYear).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Mortes hoje: " tooltipText="Óbitos - Hoje" />
-              <span>{{ Math.round(deathsToday) }}</span>
+              <span>{{ Math.round(deathsToday).toLocaleString('pt-BR') }}</span>
             </v-card-text>
           </v-card>
         </v-col>
@@ -35,23 +35,23 @@
             <v-card-text>
               <br />
               <TooltipComponent displayText="Pessoas empregadas: " tooltipText="Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência"></TooltipComponent>
-              <span>{{ Math.round(currentOccupationChange) }}</span>
+              <span>{{ Math.round(currentOccupationChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Pessoas desempregadas: " tooltipText="Pessoas de 14 anos ou mais de idade, desocupadas nas semana de referência" />
-              <span>{{ Math.round(currentUnemployedChange) }}</span>
+              <span>{{ Math.round(currentUnemployedChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Valor médio do m² no Brasil: " tooltipText="Custo médio m² em moeda corrente" />
-              <span>R$ {{ currentMetroChange.toFixed(2) }}</span>
+              <span>R$ {{ currentMetroChange.toFixed(2).toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Média salarial: " tooltipText="Rendimento médio real do trabalho principal, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho" />
-              <span>R$ {{ Math.round(currentIncomeChange) }}</span>
+              <span>R$ {{ currentIncomeChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Rendimento mensal de todos os brasileiros: " tooltipText="Massa de rendimento real de todos os trabalhos, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho" />
-              <span>R$ {{ currentIncomeMassaChange.toFixed(2) }}</span>
+              <span>R$ {{ currentIncomeMassaChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
             </v-card-text>
           </v-card>
         </v-col>
@@ -61,23 +61,23 @@
             <v-card-text>
               <br />
               <TooltipComponent displayText="Valor médio do m² no Centro-Oeste: " tooltipText="Custo médio m² em moeda corrente do Centro-Oeste" />
-              <span>R$ {{ currentCentroOesteMetroChange.toFixed(2) }}</span>
+              <span>R$ {{ currentCentroOesteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2})}}</span>
               <br />
               <br />
               <TooltipComponent displayText="Valor médio do m² no Nordeste: " tooltipText="Custo médio m² em moeda corrente do Nordeste" />
-              <span>R$ {{ currentNordesteMetroChange.toFixed(2) }}</span>
+              <span>R$ {{ currentNordesteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2})}}</span>
               <br />
               <br />
               <TooltipComponent displayText="Valor médio do m² no Sudeste: " tooltipText="Custo médio m² em moeda corrente do Sudeste" />
-              <span>R$ {{ currentSudesteMetroChange.toFixed(2) }}</span>
+              <span>R$ {{ currentSudesteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Valor médio do m² no Norte: " tooltipText="Custo médio m² em moeda corrente do Norte" />
-              <span>R$ {{ currentNorteMetroChange.toFixed(2) }}</span>
+              <span>R$ {{ currentNorteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Valor médio do m² no Sul: " tooltipText="Custo médio m² em moeda corrente do Sul" />
-              <span>R$ {{ currentSulMetroChange.toFixed(2) }}</span>
+              <span>R$ {{ currentSulMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
             </v-card-text>
           </v-card>
         </v-col>
