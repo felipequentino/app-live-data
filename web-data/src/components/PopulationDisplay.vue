@@ -12,11 +12,11 @@
               <span>{{ Math.round(Math.round(currentPopulationMenChange) + Math.round(currentPopulationWomenChange)).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="População de Homens: " tooltipText=" População - Total" />
+              <TooltipComponent displayText="População de Homens: " tooltipText=" População de Homens - Total" />
               <span>{{ Math.round(currentPopulationMenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="População de Mulheres: " tooltipText=" População - Total" />
+              <TooltipComponent displayText="População de Mulheres: " tooltipText=" População de Mulheres- Total" />
               <span>{{ Math.round(currentPopulationWomenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
