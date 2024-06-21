@@ -15,6 +15,7 @@ import SobrePage from './pages/SobrePage.vue';
 import ContatoPage from './pages/ContatoPage.vue';
 import FonteDeDadosPage from './pages/FonteDeDadosPage.vue';
 import HomePage from './pages/HomePage.vue';
+import DadosStatPage from './pages/DadosStatPage.vue';
 import './registerServiceWorker'
 
 
@@ -25,6 +26,7 @@ const routes = [
   { path: '/contato', component: ContatoPage },
   { path: '/fonte-de-dados', component: FonteDeDadosPage },
   { path: '/dashboard', component: HomePage },
+  { path: '/dados-estaticos', component: DadosStatPage},
   { path: '/', component: HomePage },
 ];
 

@@ -30,6 +30,7 @@ export default {
     drawer: false,
     items: [
       { title: 'Dashboard', value: '/' },
+      { title: 'Dados Estáticos', value: '/dados-estaticos'},
       { title: 'Fonte de Dados', value: '/fonte-de-dados' },
       { title: 'Contato', value: '/contato' },
       { title: 'Sobre', value: '/sobre' },
