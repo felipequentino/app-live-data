@@ -1,6 +1,8 @@
 ### Fonte dos Dados: 
 - [SIDRA - IBGE](https://sidra.ibge.gov.br/home/pnadcm)
+- [SIDRA TABELAS - IBGE](https://sidra.ibge.gov.br/pesquisa/pnadca/tabelas)
 - [Sistema de Estatísticas Vitais](https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=o-que-e)
+- [PNAD Contínua - Pesquisa Nacional por Amostra de Domicílios Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html?=&t=resultados)
 - **Notebooks Implementados: [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)**
 
 #### 1. Informações e seus Modelos para Predição
@@ -17,8 +19,8 @@
   - **Norte**: SARIMAX
   - **Nordeste**: ARIMA
   - **Centro-Oeste**: SARIMAX
-  - **Sudeste**: 
-  - **Sul**: 
+  - **Sudeste**: SARIMAX
+  - **Sul**: FORECAST DRIFT
 
 #### 2. Novas Informações
 
