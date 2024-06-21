@@ -19,7 +19,6 @@
     "floating-vue": "^5.2.2",
     "luxon": "^3.4.4",
     "papaparse": "^5.4.1",
-    "primevue": "^4.0.0-rc.2",
     "register-service-worker": "^1.7.2",
     "vue": "^3.4.29",
     "vue-chartjs": "^5.3.0",
