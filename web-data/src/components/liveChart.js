@@ -6,8 +6,14 @@ export default {
   data() {
     return {
       populationData: [],
+      populationMenData: [],
+      populationWomenData: [],
       occupationData: [],
+      occupationMenData: [],
+      occupationWomenData: [],
       unemployedData: [],
+      unemployedMenData: [],
+      unemployedWomenData: [],
       metroData: [],
       metroCentroOesteData: [],
       metroNordesteData: [],
@@ -27,8 +33,14 @@ export default {
       deathsPerSecond: 0,
       deathsThisYear: 0,
       currentPopulationChange: 0,
+      currentPopulationMenChange: 0,
+      currentPopulationWomenChange: 0,
       currentOccupationChange: 0,
+      currentOccupationMenChange: 0,
+      currentOccupationWomenChange: 0,
       currentUnemployedChange: 0,
+      currentUnemployedMenChange: 0,
+      currentUnemployedWomenChange: 0,
       currentMetroChange: 0,
       currentCentroOesteMetroChange: 0,
       currentNordesteMetroChange: 0,
@@ -40,8 +52,14 @@ export default {
       currentDeathsChange: 0,
       currentBirthsChange: 0,
       populationInterval: null,
+      populationMenInterval: null,
+      populationWomenInterval: null,
       occupationInterval: null,
+      occupationMenInterval: null,
+      occupationWomenInterval: null,
       unemployedInterval: null,
+      unemployedMenInterval: null,
+      unemployedWomenInterval: null,
       metroInterval: null,
       centroOesteMetroInterval: null,
       nordesteMetroInterval: null,
@@ -56,8 +74,14 @@ export default {
   },
   mounted() {
     this.loadCSVData('/data/data_predicted/predict_populacao_2024-2025.csv', 'populationData', 'currentPopulationChange', 'populationInterval');
+    this.loadCSVData('/data/data_predicted/predict_populacao_H_2024-2025.csv', 'populationMenData', 'currentPopulationMenChange', 'populationMenInterval');
+    this.loadCSVData('/data/data_predicted/predict_populacao_M_2024-2025.csv', 'populationWomenData', 'currentPopulationWomenChange', 'populationWomenInterval');
     this.loadCSVData('/data/data_predicted/predict_ocupacao_2024-2025.csv', 'occupationData', 'currentOccupationChange', 'occupationInterval');
+    this.loadCSVData('/data/data_predicted/predict_ocupacao_H_2024-2025.csv', 'occupationMenData', 'currentOccupationMenChange', 'occupationMenInterval');
+    this.loadCSVData('/data/data_predicted/predict_ocupacao_M_2024-2025.csv', 'occupationWomenData', 'currentOccupationWomenChange', 'occupationWomenInterval');
     this.loadCSVData('/data/data_predicted/predict_desocupados_2024-2025.csv', 'unemployedData', 'currentUnemployedChange', 'unemployedInterval');
+    this.loadCSVData('/data/data_predicted/predict_desocupados_H_2024-2025.csv', 'unemployedMenData', 'currentUnemployedMenChange', 'unemployedMenInterval');
+    this.loadCSVData('/data/data_predicted/predict_desocupados_M_2024-2025.csv', 'unemployedWomenData', 'currentUnemployedWomenChange', 'unemployedWomenInterval');
     this.loadCSVData('/data/data_predicted/predict_metro_2024-2025.csv', 'metroData', 'currentMetroChange', 'metroInterval');
     this.loadCSVData('/data/data_predicted/predict_rendimento_2024-2025.csv', 'incomeData', 'currentIncomeChange', 'incomeInterval');
     this.loadCSVData('/data/data_predicted/predict_mortes_2024-2025.csv', 'deathsData', 'currentDeathsChange', 'deathsInterval');
@@ -71,10 +95,16 @@ export default {
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
+    clearInterval(this.populationMenInterval);
+    clearInterval(this.populationWomenInterval);
     clearInterval(this.birthsInterval);
     clearInterval(this.deathsInterval);
     clearInterval(this.occupationInterval);
+    clearInterval(this.occupationMenInterval);
+    clearInterval(this.occupationWomenInterval);
     clearInterval(this.unemployedInterval);
+    clearInterval(this.unemployedMenInterval);
+    clearInterval(this.unemployedWomenInterval);
     clearInterval(this.metroInterval);
     clearInterval(this.centroOesteMetroInterval);
     clearInterval(this.nordesteMetroInterval);

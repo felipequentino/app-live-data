@@ -9,7 +9,15 @@
             <v-card-text>
               <br />
               <TooltipComponent displayText="População atual: " tooltipText=" População - Total" />
-              <span>{{ Math.round(currentPopulationChange).toLocaleString('pt-BR') }}</span>
+              <span>{{ Math.round(Math.round(currentPopulationMenChange) + Math.round(currentPopulationWomenChange)).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="População de Homens: " tooltipText=" População - Total" />
+              <span>{{ Math.round(currentPopulationMenChange).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="População de Mulheres: " tooltipText=" População - Total" />
+              <span>{{ Math.round(currentPopulationWomenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Nascimentos esse ano: " tooltipText="Nascidos vivos - Total no ano de 2024" />
@@ -35,49 +43,31 @@
             <v-card-text>
               <br />
               <TooltipComponent displayText="Pessoas empregadas: " tooltipText="Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência"></TooltipComponent>
-              <span>{{ Math.round(currentOccupationChange).toLocaleString('pt-BR') }}</span>
+              <span>{{  Math.round(Math.round(currentOccupationMenChange) + Math.round(currentOccupationWomenChange)).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Homens empregados: " tooltipText="Homens de 14 anos ou mais de idade, ocupados na semana de referência"></TooltipComponent>
+              <span>{{ Math.round(currentOccupationMenChange).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Mulheres empregadas: " tooltipText="Mulheres de 14 anos ou mais de idade, ocupadas na semana de referência"></TooltipComponent>
+              <span>{{ Math.round(currentOccupationWomenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Pessoas desempregadas: " tooltipText="Pessoas de 14 anos ou mais de idade, desocupadas nas semana de referência" />
-              <span>{{ Math.round(currentUnemployedChange).toLocaleString('pt-BR') }}</span>
+              <span>{{  Math.round(Math.round(currentUnemployedMenChange) + Math.round(currentUnemployedWomenChange)).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="Valor médio do m² no Brasil: " tooltipText="Custo médio m² em moeda corrente" />
-              <span>R$ {{ currentMetroChange.toFixed(2).toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
+              <TooltipComponent displayText="Homens desempregados: " tooltipText="Homens de 14 anos ou mais de idade, desocupadas nas semana de referência" />
+              <span>{{ Math.round(currentUnemployedMenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="Média salarial: " tooltipText="Rendimento médio real do trabalho principal, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho" />
-              <span>R$ {{ currentIncomeChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
+              <TooltipComponent displayText="Mulheres desempregadas: " tooltipText="Mulheres de 14 anos ou mais de idade, desocupadas nas semana de referência" />
+              <span>{{ Math.round(currentUnemployedWomenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
               <TooltipComponent displayText="Rendimento mensal de todos os brasileiros: " tooltipText="Massa de rendimento real de todos os trabalhos, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho" />
               <span>R$ {{ currentIncomeMassaChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col class="cardContainer" cols="12" md="4">
-          <v-card class="section regions-section">
-            <v-card-title class="section-title">Regiões</v-card-title>
-            <v-card-text>
-              <br />
-              <TooltipComponent displayText="Valor médio do m² no Centro-Oeste: " tooltipText="Custo médio m² em moeda corrente do Centro-Oeste" />
-              <span>R$ {{ currentCentroOesteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2})}}</span>
-              <br />
-              <br />
-              <TooltipComponent displayText="Valor médio do m² no Nordeste: " tooltipText="Custo médio m² em moeda corrente do Nordeste" />
-              <span>R$ {{ currentNordesteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2})}}</span>
-              <br />
-              <br />
-              <TooltipComponent displayText="Valor médio do m² no Sudeste: " tooltipText="Custo médio m² em moeda corrente do Sudeste" />
-              <span>R$ {{ currentSudesteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
-              <br />
-              <br />
-              <TooltipComponent displayText="Valor médio do m² no Norte: " tooltipText="Custo médio m² em moeda corrente do Norte" />
-              <span>R$ {{ currentNorteMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
-              <br />
-              <br />
-              <TooltipComponent displayText="Valor médio do m² no Sul: " tooltipText="Custo médio m² em moeda corrente do Sul" />
-              <span>R$ {{ currentSulMetroChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
             </v-card-text>
           </v-card>
         </v-col>
