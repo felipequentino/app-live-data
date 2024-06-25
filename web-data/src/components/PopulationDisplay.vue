@@ -66,8 +66,42 @@
               <span>{{ Math.round(currentUnemployedWomenChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="Rendimento mensal de todos os brasileiros: " tooltipText="Massa de rendimento real de todos os trabalhos, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho" />
-              <span>R$ {{ currentIncomeMassaChange.toLocaleString('pt-BR', {style: 'decimal', maximumFractionDigits: 2}) }}</span>
+              <TooltipComponent displayText="Gastos com a saúde: " tooltipText="Total de despesas executadas para a área de atuação Saúde - Esse Ano (2024)" />
+              <span>R$ {{ currentHealthExpensesChange.toLocaleString('pt-BR', {style: 'decimal', minimumFractionDigits:2,maximumFractionDigits: 2}) }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Gastos com a educação: " tooltipText="Total de despesas executadas para a área de atuação Educação -  - Esse Ano (2024)" />
+              <span>R$ {{ currentEducationExpensesChange.toLocaleString('pt-BR', {style: 'decimal', minimumFractionDigits:2,maximumFractionDigits: 2}) }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Rendimento mensal de todos os brasileiros: " tooltipText="Massa de rendimento real de todos os trabalhos, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho - Esse Ano (2024)" />
+              <span>R$ {{ currentIncomeMassaChange.toLocaleString('pt-BR', {style: 'decimal', minimumFractionDigits:2, maximumFractionDigits: 2}) }}</span>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col class="cardContainer" cols="12" md="4">
+          <v-card class="section vehicle-section">
+            <v-card-title class="section-title">Veículos</v-card-title>
+            <v-card-text>
+              <br />
+              <TooltipComponent displayText="Veículos Licenciados: " tooltipText="Veículos Licenciados - Esse Ano (2024)" />
+              <span>{{ Math.round(Math.round(currentLicenciadosNacionaisChange) + Math.round(currentImportacaoVeiculosChange)).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Veículos Nacionais Licenciados: " tooltipText="Veículos Nacionais Licenciados - Esse Ano (2024)" />
+              <span>{{ Math.round(currentLicenciadosNacionaisChange).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Veículos Importados Licenciados: " tooltipText="Veículos Importados Licenciados - Esse Ano (2024)" />
+              <span>{{ Math.round(currentImportacaoVeiculosChange).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Veículos Brasileiros Exportados: " tooltipText="Veículos Brasileiros Exportados - Esse Ano (2024)" />
+              <span>{{ Math.round(currentExportacaoVeiculosChange).toLocaleString('pt-BR') }}</span>
+              <br />
+              <br />
+              <TooltipComponent displayText="Veículos Brasileiros Produzidos: " tooltipText="Veículos Brasileiros Produzidos - Esse Ano (2024)" />
+              <span>{{ Math.round(currentProducaoVeiculosChange).toLocaleString('pt-BR') }}</span>
             </v-card-text>
           </v-card>
         </v-col>

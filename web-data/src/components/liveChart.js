@@ -8,68 +8,109 @@ export default {
       populationData: [],
       populationMenData: [],
       populationWomenData: [],
+      
       occupationData: [],
       occupationMenData: [],
       occupationWomenData: [],
+
       unemployedData: [],
       unemployedMenData: [],
       unemployedWomenData: [],
+
       metroData: [],
       metroCentroOesteData: [],
       metroNordesteData: [],
       metroNorteData: [],
       metroSudesteData: [],
       metroSulData: [],
+
       incomeData: [],
       incomeMassaData: [],
+      healthExpensesData: [],
+      educationExpensesData: [],
+
       deathsData: [],
       birthsData: [],
       birthsThisYearData: [],
       deathsThisYearData: [],
+
+      exportacaoVeiculosData: [],
+      importacaoVeiculosData: [],
+      licenciadosNacionaisData: [],
+      producaoVeiculosData: [],
+
       birthsToday: 0,
       birthsPerSecond: 0,
       birthsThisYear: 0,
+
       deathsToday: 0,
       deathsPerSecond: 0,
       deathsThisYear: 0,
+
       currentPopulationChange: 0,
       currentPopulationMenChange: 0,
       currentPopulationWomenChange: 0,
+
       currentOccupationChange: 0,
       currentOccupationMenChange: 0,
       currentOccupationWomenChange: 0,
+
       currentUnemployedChange: 0,
       currentUnemployedMenChange: 0,
       currentUnemployedWomenChange: 0,
+
       currentMetroChange: 0,
       currentCentroOesteMetroChange: 0,
       currentNordesteMetroChange: 0,
       currentNorteMetroChange: 0,
       currentSudesteMetroChange: 0,
       currentSulMetroChange: 0,
+
       currentIncomeChange: 0,
       currentIncomeMassaChange: 0,
+      currentHealthExpensesChange: 0,
+      currentEducationExpensesChange: 0,
+
       currentDeathsChange: 0,
       currentBirthsChange: 0,
+
+      currentExportacaoVeiculosChange: 0,
+      currentImportacaoVeiculosChange: 0,
+      currentLicenciadosNacionaisChange: 0,
+      currentProducaoVeiculosChange: 0,
+
       populationInterval: null,
       populationMenInterval: null,
       populationWomenInterval: null,
+
       occupationInterval: null,
       occupationMenInterval: null,
       occupationWomenInterval: null,
+
       unemployedInterval: null,
       unemployedMenInterval: null,
       unemployedWomenInterval: null,
+
       metroInterval: null,
       centroOesteMetroInterval: null,
       nordesteMetroInterval: null,
       norteMetroInterval: null,
       sudesteMetroInterval: null,
       sulMetroInterval: null,
+
       incomeInterval: null,
       incomeMassaInterval: null,
+      healthExpensesInterval: null,
+      educationExpensesInterval: null,
+
       birthsInterval: null,
-      deathsInterval: null
+      deathsInterval: null,
+
+      exportacaoVeiculosInterval: null,
+      importacaoVeiculosInterval: null,
+      licenciadosNacionaisInterval: null,
+      producaoVeiculosInterval: null,
+
     };
   },
   mounted() {
@@ -92,6 +133,12 @@ export default {
     this.loadCSVData('/data/data_predicted/predict_metro_sudeste.csv', 'sudesteMetroData', 'currentSudesteMetroChange', 'sudesteMetroInterval');
     this.loadCSVData('/data/data_predicted/predict_metro_sul.csv', 'sulMetroData', 'currentSulMetroChange', 'sulMetroInterval');
     this.loadCSVData('/data/data_predicted/predict_dinheiro_massa.csv', 'incomeMassaData', 'currentIncomeMassaChange', 'incomeMassaInterval' );
+    this.loadCSVData('/data/data_predicted/predict_gastos_saude.csv', 'healthExpensesData', 'currentHealthExpensesChange', 'healthExpensesInterval');
+    this.loadCSVData('/data/data_predicted/predict_gastos_educacao.csv', 'educationExpensesData', 'currentEducationExpensesChange', 'educationExpensesInterval');
+    this.loadCSVData('/data/data_predicted/predict_exportacao_veiculos.csv', 'exportacaoVeiculosData', 'currentExportacaoVeiculosChange', 'exportacaoVeiculosInterval');
+    this.loadCSVData('/data/data_predicted/predict_licenciados_importados.csv', 'importacaoVeiculosData', 'currentImportacaoVeiculosChange', 'importacaoVeiculosInterval');
+    this.loadCSVData('/data/data_predicted/predict_licenciados_nacionais.csv', 'licenciadosNacionaisData', 'currentLicenciadosNacionaisChange', 'licenciadosNacionaisInterval');
+    this.loadCSVData('/data/data_predicted/predict_producao_veiculos.csv', 'producaoVeiculosData', 'currentProducaoVeiculosChange', 'producaoVeiculosInterval');
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
@@ -113,6 +160,12 @@ export default {
     clearInterval(this.sudesteMetroInterval);
     clearInterval(this.incomeInterval);
     clearInterval(this.IncomeMassaInterval);
+    clearInterval(this.healthExpensesInterval);
+    clearInterval(this.educationExpensesInterval);
+    clearInterval(this.exportacaoVeiculosInterval);
+    clearInterval(this.importacaoVeiculosInterval);
+    clearInterval(this.licenciadosNacionaisInterval);
+    clearInterval(this.producaoVeiculosInterval);
   },
   methods: {
     async loadCSVData(url, dataKey, changeKey, intervalKey) {
