@@ -96,11 +96,11 @@
               <span>{{ Math.round(currentImportacaoVeiculosChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="Veículos Brasileiros Exportados: " tooltipText="Veículos Brasileiros Exportados - Esse Ano (2024)" />
+              <TooltipComponent displayText="Veículos Exportados do Brasil: " tooltipText="Veículos Exportados do Brasil - Esse Ano (2024)" />
               <span>{{ Math.round(currentExportacaoVeiculosChange).toLocaleString('pt-BR') }}</span>
               <br />
               <br />
-              <TooltipComponent displayText="Veículos Brasileiros Produzidos: " tooltipText="Veículos Brasileiros Produzidos - Esse Ano (2024)" />
+              <TooltipComponent displayText="Veículos Produzidos no Brasil: " tooltipText="Veículos Produzidos no Brasil - Esse Ano (2024)" />
               <span>{{ Math.round(currentProducaoVeiculosChange).toLocaleString('pt-BR') }}</span>
             </v-card-text>
           </v-card>
@@ -126,6 +126,7 @@ export default {
 
 <style scoped>
 .container {
+  z-index: -10;
   margin-top: 2rem;
   display: grid;
   place-items: center;
