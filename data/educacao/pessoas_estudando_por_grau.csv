@@ -1,0 +1,29 @@
+﻿"Tabela 7143 - Estudantes, por curso frequentado e rede de ensino"
+"Variável - Estudantes (Mil pessoas)"
+"";"Rede de ensino";"Ano x Curso frequentado"
+"";"Rede de ensino";"2019";;;;;"2022";;;;;"2023"
+"";"Rede de ensino";"Creche e pré-escola";"Ensino Fundamental";"Ensino Médio";"Superior - Graduação";"Especialização, Mestrado e Doutorado";"Creche e pré-escola";"Ensino Fundamental";"Ensino Médio";"Superior - Graduação";"Especialização, Mestrado e Doutorado";"Creche e pré-escola";"Ensino Fundamental";"Ensino Médio";"Superior - Graduação";"Especialização, Mestrado e Doutorado"
+"Brasil";"Total";"9768";"28024";"8480";"8676";"1614";"10488";"27167";"8713";"8794";"1828";"11151";"26707";"8565";"9034";"1837"
+"Brasil";"Pública";"7338";"23072";"7434";"2267";"417";"8097";"22412";"7588";"2413";"443";"8642";"21970";"7453";"2362";"476"
+"Brasil";"Privada";"2430";"4952";"1046";"6409";"1197";"2391";"4754";"1125";"6382";"1385";"2509";"4738";"1112";"6672";"1361"
+"Fonte: IBGE - Pesquisa Nacional por Amostra de Domicílios Contínua Anual - 2º trimestre"
+
+"Notas"
+"A partir de 01 de agosto de 2022, as estimativas deste tema passaram a ser divulgadas com base no novo método de ponderação da pesquisa, conforme a Nota Técnica 03/2021. Consequentemente, a série histórica dos indicadores foi atualizada."
+""
+"Legenda"
+"Símbolo";"Significado"
+"-";"Zero absoluto, não resultante de um cálculo ou arredondamento.
+Ex: Em determinado município não existem pessoas de 14 anos de idade sem instrução."
+"0";"Zero resultante de um cálculo ou arredondamento.
+Ex: A inflação do feijão em determinada Região Metropolitana foi 0.
+Determinado município produziu 400 kg de sementes de girassol e os dados da tabela são expressos em toneladas."
+"X";"Valor inibido para não identificar o informante.
+Ex: Determinado município só possui uma empresa produtora de cimento, logo o valor de sua produção deve ser inibido."
+"..";"Valor não se aplica.
+Ex: Não se pode obter o total da produção agrícola em determinado município quando os produtos agrícolas são contabilizados com unidades de medida distintas."
+"...";"Valor não disponível.
+Ex: A produção de feijão em determinado município não foi pesquisada ou determinado município não existia no ano da pesquisa."
+"A a Z
+(exceto X)";"Significa uma faixa de valores. Varia em função da tabela (se for o caso).
+Ex: O nível de precisão da produção estimada de combustíveis está na faixa A (95 a 100%)"
