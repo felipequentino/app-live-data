@@ -4,4 +4,7 @@ ESSES DOIS ARQUIVOS ESTÃO COM A DATA DE 2021 À 2023, MAS A DATA REAL DELES É 
 
 LINK DOS DADOS: https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=o-que-e
 
+
+ALÉM DISSO, TODAS TABELAS DE PREDIÇÃO ESTÃO COM O MESMO NOME DE COLUNA: POPULAÇÃO, MAS É APENAS PARA ME AJUDAR ENQUANTO DEV!
+
 OBRIGADO.
