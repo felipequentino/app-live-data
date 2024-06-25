@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <v-container class="mainContainer">
     <div class="displayContainer">
       <h2 class="title">Informações do Brasil atualizadas em tempo real</h2>
       <v-row class="container">
         <v-col class="cardContainer" cols="12" md="4">
-          <v-card class="section population-section">
+          <v-card class="section">
             <v-card-title class="section-title">População</v-card-title>
             <v-card-text>
               <br />
@@ -38,7 +38,7 @@
           </v-card>
         </v-col>
         <v-col class="cardContainer" cols="12" md="4">
-          <v-card class="section economic-section">
+          <v-card class="section">  
             <v-card-title class="section-title">Econômico</v-card-title>
             <v-card-text>
               <br />
@@ -80,7 +80,7 @@
           </v-card>
         </v-col>
         <v-col class="cardContainer" cols="12" md="4">
-          <v-card class="section vehicle-section">
+          <v-card class="section">
             <v-card-title class="section-title">Veículos</v-card-title>
             <v-card-text>
               <br />
@@ -125,8 +125,14 @@ export default {
 </script>
 
 <style scoped>
+.displayContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 2rem;
+}
+
 .container {
-  z-index: -10;
   margin-top: 2rem;
   display: grid;
   place-items: center;
@@ -134,13 +140,6 @@ export default {
 
 .cardContainer {
   max-width: 60rem;
-}
-
-.displayContainer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 2rem;
 }
 
 .title {

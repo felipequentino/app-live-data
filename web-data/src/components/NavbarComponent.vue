@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="navBarContainer">
     <v-layout>
       <v-app-bar color="#003366" prominent>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -30,7 +30,7 @@ export default {
     drawer: false,
     items: [
       { title: 'Dashboard', value: '/' },
-      { title: 'Dados Estáticos', value: '/dados-estaticos'},
+      { title: 'Dados Estáticos', value: '/dados-estaticos' },
       { title: 'Fonte de Dados', value: '/fonte-de-dados' },
       { title: 'Contato', value: '/contato' },
       { title: 'Sobre', value: '/sobre' },
@@ -47,7 +47,12 @@ export default {
 <style scoped>
 .navBarContainer {
   z-index: 100;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
+
 .navbar-logo {
   height: 50px;
   width: 50px;
