@@ -1,0 +1,45 @@
+﻿"Tabela 6793 - Pessoas de 10 anos ou mais de idade, por situação do domicílio, sexo e utilização da Internet no período de referência dos últimos três meses"
+"Variável - Pessoas de 10 anos ou mais de idade (Mil pessoas)"
+"Brasil e Grande Região";"Utilização da internet no período de referência dos últimos três meses";"Ano x Situação do domicílio x Sexo"
+"Brasil e Grande Região";"Utilização da internet no período de referência dos últimos três meses";"2019";;;"2021";;;"2022"
+"Brasil e Grande Região";"Utilização da internet no período de referência dos últimos três meses";"Total";;;"Total";;;"Total"
+"Brasil e Grande Região";"Utilização da internet no período de referência dos últimos três meses";"Total";"Homens";"Mulheres";"Total";"Homens";"Mulheres";"Total";"Homens";"Mulheres"
+"Brasil";"Total";"180815";"87752";"93063";"183899";"89218";"94681";"185418";"89941";"95478"
+"Brasil";"Utilizaram internet";"143836";"68907";"74929";"155707";"74640";"81067";"161627";"77613";"84013"
+"Brasil";"Não utilizaram internet";"36979";"18845";"18135";"28192";"14578";"13614";"23792";"12327";"11464"
+"Norte";"Total";"15099";"7461";"7638";"15543";"7757";"7786";"15791";"7854";"7937"
+"Norte";"Utilizaram internet";"10573";"5018";"5555";"11858";"5749";"6109";"13017";"6332";"6685"
+"Norte";"Não utilizaram internet";"4526";"2443";"2083";"3686";"2009";"1677";"2774";"1522";"1252"
+"Nordeste";"Total";"48658";"23522";"25137";"49257";"23648";"25609";"49644";"23887";"25757"
+"Nordeste";"Utilizaram internet";"34058";"15922";"18136";"38456";"17950";"20507";"41283";"19355";"21928"
+"Nordeste";"Não utilizaram internet";"14600";"7600";"7001";"10800";"5698";"5102";"8361";"4532";"3829"
+"Sudeste";"Total";"77173";"37186";"39987";"78589";"37909";"40680";"79048";"37999";"41049"
+"Sudeste";"Utilizaram internet";"65611";"31590";"34021";"69797";"33565";"36232";"70725";"33963";"36762"
+"Sudeste";"Não utilizaram internet";"11562";"5595";"5966";"8792";"4344";"4448";"8323";"4036";"4287"
+"Sul";"Total";"26011";"12803";"13209";"26383";"13001";"13382";"26581";"13128";"13453"
+"Sul";"Utilizaram internet";"21684";"10613";"11071";"22888";"11232";"11656";"23452";"11528";"11923"
+"Sul";"Não utilizaram internet";"4327";"2190";"2137";"3495";"1769";"1725";"3129";"1599";"1530"
+"Centro-Oeste";"Total";"13874";"6781";"7093";"14128";"6904";"7224";"14355";"7073";"7282"
+"Centro-Oeste";"Utilizaram internet";"11910";"5764";"6146";"12708";"6145";"6562";"13150";"6435";"6715"
+"Centro-Oeste";"Não utilizaram internet";"1964";"1017";"947";"1420";"758";"662";"1205";"638";"567"
+"Fonte: IBGE - Pesquisa Nacional por Amostra de Domicílios Contínua Anual - 4º trimestre"
+
+"Notas"
+"A partir de 30 de novembro de 2021, as estimativas deste tema passaram a ser divulgadas com base no novo método de ponderação da pesquisa, conforme a Nota Técnica 03/2021. Consequentemente, a série histórica dos indicadores foi atualizada."
+""
+"Legenda"
+"Símbolo";"Significado"
+"-";"Zero absoluto, não resultante de um cálculo ou arredondamento.
+Ex: Em determinado município não existem pessoas de 14 anos de idade sem instrução."
+"0";"Zero resultante de um cálculo ou arredondamento.
+Ex: A inflação do feijão em determinada Região Metropolitana foi 0.
+Determinado município produziu 400 kg de sementes de girassol e os dados da tabela são expressos em toneladas."
+"X";"Valor inibido para não identificar o informante.
+Ex: Determinado município só possui uma empresa produtora de cimento, logo o valor de sua produção deve ser inibido."
+"..";"Valor não se aplica.
+Ex: Não se pode obter o total da produção agrícola em determinado município quando os produtos agrícolas são contabilizados com unidades de medida distintas."
+"...";"Valor não disponível.
+Ex: A produção de feijão em determinado município não foi pesquisada ou determinado município não existia no ano da pesquisa."
+"A a Z
+(exceto X)";"Significa uma faixa de valores. Varia em função da tabela (se for o caso).
+Ex: O nível de precisão da produção estimada de combustíveis está na faixa A (95 a 100%)"
