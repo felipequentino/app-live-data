@@ -21,11 +21,7 @@ if (process.env.NODE_ENV === 'production') {
       console.log('Novos recursos baixando.')
     },
     updated(registration) {
-      console.log('Novos recursos disponíveis.')
-      const answer = window.confirm('Uma nova versão do aplicativo está disponível, deseja atualizar?')
-      if (answer) {
         registration.waiting.postMessage('skipWaiting')
-      }
     },
     offline() {
       console.log('No internet connection found. App is running in offline mode.')
