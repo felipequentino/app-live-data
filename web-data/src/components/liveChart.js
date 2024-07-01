@@ -28,6 +28,7 @@ export default {
       incomeMassaData: [],
       healthExpensesData: [],
       educationExpensesData: [],
+      defenseExpensesData: [],
 
       deathsData: [],
       birthsData: [],
@@ -70,6 +71,7 @@ export default {
       currentIncomeMassaChange: 0,
       currentHealthExpensesChange: 0,
       currentEducationExpensesChange: 0,
+      currentDefenseExpensesChange: 0,
 
       currentDeathsChange: 0,
       currentBirthsChange: 0,
@@ -102,6 +104,7 @@ export default {
       incomeMassaInterval: null,
       healthExpensesInterval: null,
       educationExpensesInterval: null,
+      defenseExpensesInterval: null,
 
       birthsInterval: null,
       deathsInterval: null,
@@ -135,6 +138,7 @@ export default {
     this.loadCSVData('/data/data_predicted/predict_dinheiro_massa.csv', 'incomeMassaData', 'currentIncomeMassaChange', 'incomeMassaInterval' );
     this.loadCSVData('/data/data_predicted/predict_gastos_saude.csv', 'healthExpensesData', 'currentHealthExpensesChange', 'healthExpensesInterval');
     this.loadCSVData('/data/data_predicted/predict_gastos_educacao.csv', 'educationExpensesData', 'currentEducationExpensesChange', 'educationExpensesInterval');
+    this.loadCSVData('/data/data_predicted/predict_gastos_ministerio_defesa.csv', 'defenseExpensesData', 'currentDefenseExpensesChange', 'defenseExpensesInterval');
     this.loadCSVData('/data/data_predicted/predict_exportacao_veiculos.csv', 'exportacaoVeiculosData', 'currentExportacaoVeiculosChange', 'exportacaoVeiculosInterval');
     this.loadCSVData('/data/data_predicted/predict_licenciados_importados.csv', 'importacaoVeiculosData', 'currentImportacaoVeiculosChange', 'importacaoVeiculosInterval');
     this.loadCSVData('/data/data_predicted/predict_licenciados_nacionais.csv', 'licenciadosNacionaisData', 'currentLicenciadosNacionaisChange', 'licenciadosNacionaisInterval');
@@ -146,22 +150,27 @@ export default {
     clearInterval(this.populationWomenInterval);
     clearInterval(this.birthsInterval);
     clearInterval(this.deathsInterval);
+    
     clearInterval(this.occupationInterval);
     clearInterval(this.occupationMenInterval);
     clearInterval(this.occupationWomenInterval);
     clearInterval(this.unemployedInterval);
     clearInterval(this.unemployedMenInterval);
     clearInterval(this.unemployedWomenInterval);
+
     clearInterval(this.metroInterval);
     clearInterval(this.centroOesteMetroInterval);
     clearInterval(this.nordesteMetroInterval);
     clearInterval(this.norteMetroInterval);
     clearInterval(this.sulMetroInterval);
     clearInterval(this.sudesteMetroInterval);
+
     clearInterval(this.incomeInterval);
     clearInterval(this.IncomeMassaInterval);
     clearInterval(this.healthExpensesInterval);
     clearInterval(this.educationExpensesInterval);
+    clearInterval(this.defenseExpensesInterval);
+
     clearInterval(this.exportacaoVeiculosInterval);
     clearInterval(this.importacaoVeiculosInterval);
     clearInterval(this.licenciadosNacionaisInterval);
