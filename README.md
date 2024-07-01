@@ -45,7 +45,7 @@
 
 - **Energia Consumida e produzida, por tipos (Solar, eólica, hidrelética, carvão, etc)**
 
-**[Associação Brasileira da Indústria e EletrônicaZ](https://www.abinee.org.br/organizacao/decon/dados/setoriais/)**
+**[Associação Brasileira da Indústria e Eletrônica](https://www.abinee.org.br/organizacao/decon/dados/setoriais/)**
 
 - **Quantidade de celulares no mercado**
 
