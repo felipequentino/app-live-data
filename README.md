@@ -21,26 +21,33 @@
   - **Centro-Oeste**: SARIMAX
   - **Sudeste**: SARIMAX
   - **Sul**: FORECAST DRIFT
-
-#### 2. Novas Informações
-
-- **Custo do m² no Brasil: FORECAST DRIFT** 
-- **Custo do m² nas 5 Regiões do Brasil**
-- **Levantamento Sistemático da Produção Agrícola**
-- **Rendimento da População (habitual): ARIMA**
-- **Variação dos Itens do Brasil**
-- **Óbitos por dia no Brasil: SARIMAX**
-- **Rendimento médio real de todos os trabalhos: SARIMAX**
-
-### 3. Tabelas do CENSO 2022 para predição
+- **Rendimento da População (habitual)**: ARIMA
+- **Rendimento médio real de todos os trabalhos**: SARIMAX
+- **Gastos públicos com a Saúde**
+- **Gastos públicos com a Educação**
+- **Gastos públicos com o Ministério da Defesa**
+- **Veículos Licenciados**: SARIMAX
+- **Veículos Exportados**: SARIMAX
+- **Veículos Produzidos**: SARIMAX
+- 
+### 2. Tabelas do CENSO 2022 para predição
 
 **[Tabelas do CENSO 2022](https://sidra.ibge.gov.br/pesquisa/pnadca/tabelas)**
 
 - **Tabela população Homens X Mulheres https://sidra.ibge.gov.br/tabela/7109**
 - **Tabela ocupação Homens X Mulheres https://sidra.ibge.gov.br/tabela/7434**
 - **Tabala rendimento mensal Homens X Mulheres https://sidra.ibge.gov.br/tabela/7444**
-- **Tabela Analfabetismo Homens X Mulheres X Idade https://sidra.ibge.gov.br/tabela/7111**
-- **Tabela Empreendedores Homens X Mulheres https://sidra.ibge.gov.br/tabela/7202**
+
+### 3. Informações futuras
+
+**[Operador Nacional do Sistema Elétrico](https://dados.ons.org.br/)**
+**[Power BI do ONS](https://www.gov.br/mme/pt-br/assuntos/secretarias/sntep/publicacoes/boletins-mensais-de-energia/painel-interativo)**
+
+- **Energia Consumida e produzida, por tipos (Solar, eólica, hidrelética, carvão, etc)**
+
+**[Associação Brasileira da Indústria e EletrônicaZ](https://www.abinee.org.br/organizacao/decon/dados/setoriais/)**
+
+- **Quantidade de celulares no mercado**
 
 ### Deploy
 
