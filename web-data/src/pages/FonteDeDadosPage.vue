@@ -4,11 +4,14 @@
     <div class="data-source-info">
       <div class="data-source-item">
         <div>
-          As fontes de dados usadas no Ludiico Live são provenientes do Sistema IBGE de Recuperação Automática e do Sistema de Estatísticas Vitais (IBGE)<br><br><a
-            href="https://sidra.ibge.gov.br/home/pnadcm" target="_blank">SIDRA</a>
+          As fontes de dados usadas no Ludiico Live são provenientes desses dados abaixo:<br><br><a
+            href="https://sidra.ibge.gov.br/home/pnadcm" target="_blank">Sistema IBGE de Recuperação Automática e do Sistema de Estatísticas Vitais (IBGE) - SIDRA</a>
             <br>
-            <a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=resultados">Sistema de Estatísticas Vitais</a>
             <br>
+            <a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html?edicao=32267&t=resultados" target="_blank">Sistema de Estatísticas Vitais</a>
+            <br>
+            <br>
+            <a href="https://sidra.ibge.gov.br/pesquisa/pnadca/tabelas" target="_blank">Tabelas do CENSO 2022</a>
         </div>
       </div>
       <div class="data-source-item">
