@@ -44,7 +44,7 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
-  z-index: 1; /* Ensure tooltip appears above other elements */
+  z-index: 1;
 }
 
 .tooltip-container span {
@@ -61,12 +61,12 @@
   border-radius: 5px;
   padding: 5px;
   position: absolute;
-  bottom: 150%; /* Adjusted to give a bit more space between text and tooltip */
+  bottom: 150%; 
   left: 50%;
   transform: translateX(-50%);
   opacity: 0.9;
-  max-width: 500px; /* Maximum width of the tooltip */
-  min-width: 290px; /* Minimum width of the tooltip */
+  max-width: 500px; 
+  min-width: 290px;
 }
 
 .tooltip::after {
