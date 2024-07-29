@@ -192,6 +192,21 @@
             </v-card-text>
           </v-card>
         </v-col>
+        <v-col class="cardContainer" cols="12" md="4">
+          <v-card class="section">  
+            <v-card-title class="section-title">Eletrônicos</v-card-title>
+            <v-card-text>
+              <br>
+              <DropdownContent
+                :number="Math.round(currentCelularesChange).toLocaleString('pt-BR')"
+                title="Celulares vendidos neste ano"
+                description="Mercado de Telefones Celulares – Total no ano de 2024"
+                fonte="https://www.abinee.org.br/organizacao/decon/dados/setoriais/"
+                fonte_description=" Abinee - Associação Brasileira da Indústria Elétrica e Eletrônica"
+              />
+            </v-card-text>
+          </v-card>
+        </v-col>
       </v-row>
     </div>
   </v-container>

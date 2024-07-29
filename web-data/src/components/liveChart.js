@@ -40,6 +40,8 @@ export default {
       licenciadosNacionaisData: [],
       producaoVeiculosData: [],
 
+      celularesData: [],
+
       birthsToday: 0,
       birthsPerSecond: 0,
       birthsThisYear: 0,
@@ -81,6 +83,8 @@ export default {
       currentLicenciadosNacionaisChange: 0,
       currentProducaoVeiculosChange: 0,
 
+      currentCelularesChange: 0,
+
       populationInterval: null,
       populationMenInterval: null,
       populationWomenInterval: null,
@@ -114,6 +118,8 @@ export default {
       licenciadosNacionaisInterval: null,
       producaoVeiculosInterval: null,
 
+      celularesInterval: null,
+
     };
   },
   mounted() {
@@ -143,6 +149,7 @@ export default {
     this.loadCSVData('/data/data_predicted/predict_licenciados_importados.csv', 'importacaoVeiculosData', 'currentImportacaoVeiculosChange', 'importacaoVeiculosInterval');
     this.loadCSVData('/data/data_predicted/predict_licenciados_nacionais.csv', 'licenciadosNacionaisData', 'currentLicenciadosNacionaisChange', 'licenciadosNacionaisInterval');
     this.loadCSVData('/data/data_predicted/predict_producao_veiculos.csv', 'producaoVeiculosData', 'currentProducaoVeiculosChange', 'producaoVeiculosInterval');
+    this.loadCSVData('/data/data_predicted/predict_celulares.csv', 'celularesData', 'currentCelularesChange', 'celularesInterval');
   },
   beforeUnmount() {
     clearInterval(this.populationInterval);
@@ -175,6 +182,8 @@ export default {
     clearInterval(this.importacaoVeiculosInterval);
     clearInterval(this.licenciadosNacionaisInterval);
     clearInterval(this.producaoVeiculosInterval);
+
+    clearInterval(this.celularesInterval);
   },
   methods: {
     async loadCSVData(url, dataKey, changeKey, intervalKey) {
@@ -191,9 +200,6 @@ export default {
             }
             if (dataKey === 'birthsData') {
               this.calculateBirthsToday(dataKey);
-            }
-            if (dataKey === 'birthsThisYear') {
-              this.calculateBirthsThisYear(dataKey);
             }
           }
         });
@@ -304,5 +310,6 @@ export default {
       this.birthsToday = Math.round(this.birthsPerSecond * secondsElapsedToday);
       this.birthsThisYear += this.birthsToday; // Initialize birthsThisYear with the value up to now
     },
+
   }
 };
