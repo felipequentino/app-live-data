@@ -1,71 +1,82 @@
 <template>
-    <div class="dropdown">
-      <div class="dropdown-title" @click="toggleDropdown">
-        <!-- Número e título alinhados horizontalmente em desktop -->
-        <div class="title-container" v-if="!isMobile">
-          <span class="number" style="color: rgb(17, 148, 63);">{{ number }}</span>
-          <span class="title">{{ title }}</span>
-        </div>
-        <!-- Número acima do título em dispositivos móveis -->
-        <div class="title-container" v-else>
-          <span class="number" style="color: rgb(17, 148, 63);">{{ number }}</span>
-          <span class="title">{{ title }}</span>
-        </div>
-        <!-- Ícone de expansão/retração -->
-        <span v-if="!isOpen">[+]</span>
-        <span v-else>[-]</span>
+  <div class="dropdown">
+    <div class="dropdown-title" @click="toggleDropdown">
+      <!-- Número e título alinhados horizontalmente em desktop -->
+      <div class="title-container" v-if="!isMobile">
+        <span class="number" style="color: rgb(17, 148, 63);">{{ number }}</span>
+        <span class="title">{{ title }}</span>
       </div>
-      <transition name="slide">
-        <div class="dropdown-content" v-show="isOpen">
-          <p>{{ description }}</p>
-        </div>
-      </transition>
+      <!-- Número acima do título em dispositivos móveis -->
+      <div class="title-container" v-else>
+        <span class="number" style="color: rgb(17, 148, 63);">{{ number }}</span>
+        <span class="title">{{ title }}</span>
+      </div>
+      <!-- Ícone de expansão/retração -->
+      <span v-if="!isOpen">[+]</span>
+      <span v-else>[-]</span>
     </div>
-  </template>
+    <transition name="slide">
+      <div class="dropdown-content" v-show="isOpen">
+        <p>{{ description }}</p>
+        <strong>Fonte: </strong>
+        <a :href="fonte" target="_blank" rel="noopener noreferrer">{{ fonte_description }}</a>
+      </div>
+    </transition>
+  </div>
+</template>
+
   
-  <script>
-  export default {
-    name: "DropdownContent",
-    props: {
-      number: {
-        type: String,
-        required: true
-      },
-      title: {
-        type: String,
-        required: true
-      },
-      description: {
-        type: String,
-        required: true
-      }
+<script>
+export default {
+  name: "DropdownContent",
+  props: {
+    number: {
+      type: String,
+      required: true
     },
-    data() {
-      return {
-        isOpen: false,
-        isMobile: false // Flag para verificar se é mobile
-      };
+    title: {
+      type: String,
+      required: true
     },
-    mounted() {
-      // Verifica se a largura da janela é menor que 768px (exemplo para dispositivos móveis)
-      this.isMobile = window.innerWidth < 768;
-      // Adiciona um listener de redimensionamento para atualizar a flag isMobile
-      window.addEventListener('resize', this.checkMobile);
+    description: {
+      type: String,
+      required: true
     },
-    unmounted() {
-      // Remove o listener de redimensionamento ao destruir o componente
-      window.removeEventListener('resize', this.checkMobile);
+    fonte: {
+      type: String,
+      required: false
     },
-    methods: {
-      toggleDropdown() {
-        this.isOpen = !this.isOpen;
-      },
-      checkMobile() {
-        this.isMobile = window.innerWidth < 768;
-      }
+    fonte_description: {
+      type: String,
+      required: false
     }
-  };
-  </script>
+  },
+  data() {
+    return {
+      isOpen: false,
+      isMobile: false // Flag para verificar se é mobile
+    };
+  },
+  mounted() {
+    // Verifica se a largura da janela é menor que 768px (exemplo para dispositivos móveis)
+    this.isMobile = window.innerWidth < 768;
+    // Adiciona um listener de redimensionamento para atualizar a flag isMobile
+    window.addEventListener('resize', this.checkMobile);
+  },
+  unmounted() {
+    // Remove o listener de redimensionamento ao destruir o componente
+    window.removeEventListener('resize', this.checkMobile);
+  },
+  methods: {
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    },
+    checkMobile() {
+      this.isMobile = window.innerWidth < 768;
+    }
+  }
+};
+</script>
   
   <style scoped>
   .dropdown {
