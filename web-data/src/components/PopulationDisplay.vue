@@ -1,7 +1,7 @@
 <template>
   <v-container class="mainContainer">
     <div class="displayContainer">
-      <h2 class="title">Informações do Brasil atualizadas em tempo real</h2>
+      <h2 class="title">Previsões do Brasil atualizadas em tempo real</h2>
       <v-row class="container">
         <v-col class="cardContainer" cols="12" md="4">
           <v-card class="section">
