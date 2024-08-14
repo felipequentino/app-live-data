@@ -13,10 +13,10 @@
         <br>
       </p>
       <p>
-        O site Ludiico Live se destaca por suas previsões de dados altamente precisas e confiáveis, baseadas em modelos preditivos cientificamente comprovados. Utilizando técnicas avançadas de machine learning e análise de dados, o site oferece previsões detalhadas e atualizadas constantemente, garantindo aos usuários uma visão clara e precisa das tendências e eventos atuais no país.
-        <br>
-        <br>
-      </p>
+      O site Ludiico Live se destaca por suas previsões de dados altamente precisas e confiáveis, baseadas em modelos preditivos cientificamente comprovados, como os modelos de previsão de séries temporais ARIMA (<i>AutoRegressive Integrated Moving Average</i>) e SARIMAX (<i>Seasonal ARIMA with eXogenous variables</i>). Utilizando técnicas avançadas de machine learning e análise de dados, o site oferece previsões detalhadas e atualizadas constantemente, garantindo aos usuários uma visão clara e precisa das tendências e eventos atuais no país.
+      <br>
+      <br>
+    </p>
       <p>
         Com o compromisso de fornecer informações de qualidade e apoiar decisões informadas, o Ludiico Live é uma ferramenta essencial para qualquer pessoa interessada em acompanhar e entender melhor a dinâmica brasileira. <br><br> Experimente a precisão e a confiabilidade das previsões do Ludiico Live e fique sempre um passo à frente com dados em tempo real.
         <br>
