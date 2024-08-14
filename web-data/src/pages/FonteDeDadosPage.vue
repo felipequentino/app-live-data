@@ -12,6 +12,15 @@
             <br>
             <br>
             <a href="https://sidra.ibge.gov.br/pesquisa/pnadca/tabelas" target="_blank">Tabelas do CENSO 2022</a>
+            <br>
+            <br>
+            <a href="https://portaldatransparencia.gov.br/funcoes/10-saude?ano=2021" target="_blank">Portal da Transparência</a>
+            <br>
+            <br>
+            <a href="https://anfavea.com.br/site/edicoes-em-excel/" target="_blank">ANFAVEA</a>
+            <br>
+            <br>
+            <a href="https://www.abinee.org.br/" target="_blank">Abinee</a>
         </div>
       </div>
       <div class="data-source-item">
