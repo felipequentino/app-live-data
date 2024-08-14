@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="displayContainer">
-      <h2 class="title">Informações do Brasil que são atualizadas com pouca frequência</h2>
+      <h2 class="title">Previsões do Brasil que são atualizadas com pouca frequência</h2>
       <v-row class="container">
         <v-col class="cardContainer" cols="12" md="4">
           <v-card class="section economic-section">
@@ -12,24 +12,32 @@
                 :number="'R$ ' + currentMetroChange.toLocaleString('pt-BR', { style: 'decimal', maximumFractionDigits: 2 })"
                 title="Valor médio do m² no Brasil"
                 description="Custo médio m² em moeda corrente"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
                 number="R$ 3.033"
                 title="Média salarial da população"
                 description="Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente e efetivamente recebidos no trabalho principal e em todos os trabalhos"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
                 number="R$ 3.223"
                 title="Média salarial dos Homens"
                 description="Rendimento médio mensal real dos homens de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente e efetivamente recebidos no trabalho principal e em todos os trabalhos"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
                 number="R$ 2.639"
                 title="Média salarial das Mulheres"
                 description="Rendimento médio mensal real dos homens de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente e efetivamente recebidos no trabalho principal e em todos os trabalhos"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
             </v-card-text>
           </v-card>
@@ -43,30 +51,40 @@
                 :number="'R$ ' + currentCentroOesteMetroChange.toLocaleString('pt-BR', { style: 'decimal', maximumFractionDigits: 2 })"
                 title="Valor médio do m² no Centro-Oeste"
                 description="Custo médio m² em moeda corrente do Centro-Oeste"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
                 :number="'R$ ' + currentNordesteMetroChange.toLocaleString('pt-BR', { style: 'decimal', maximumFractionDigits: 2 })"
                 title="Valor médio do m² no Nordeste"
                 description="Custo médio m² em moeda corrente do Nordeste"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
                 :number="'R$ ' + currentSudesteMetroChange.toLocaleString('pt-BR', { style: 'decimal', maximumFractionDigits: 2 })"
                 title="Valor médio do m² no Sudeste"
                 description="Custo médio m² em moeda corrente do Sudeste"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
                 :number="'R$ ' + currentNorteMetroChange.toLocaleString('pt-BR', { style: 'decimal', maximumFractionDigits: 2 })"
                 title="Valor médio do m² no Norte"
                 description="Custo médio m² em moeda corrente do Norte"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
               <br />
               <DropdownContent
-                :number="'R$ ' + currentSulMetroChange.toLocaleString('pt-BR', { style: 'decimal', maximumFractionDigits: 2 })"
+                :number="currentSulMetroChange.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })"
                 title="Valor médio do m² no Sul"
                 description="Custo médio m² em moeda corrente do Sul"
+                fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
+                fonte_description=" SIDRA - IBGE"
               />
             </v-card-text>
           </v-card>
