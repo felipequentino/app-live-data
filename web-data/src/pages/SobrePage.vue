@@ -14,9 +14,13 @@
       </p>
       <p>
         O site Ludiico Live se destaca por suas previsões de dados altamente precisas e confiáveis, baseadas em modelos preditivos cientificamente comprovados. Utilizando técnicas avançadas de machine learning e análise de dados, o site oferece previsões detalhadas e atualizadas constantemente, garantindo aos usuários uma visão clara e precisa das tendências e eventos atuais no país.
+        <br>
+        <br>
       </p>
       <p>
         Com o compromisso de fornecer informações de qualidade e apoiar decisões informadas, o Ludiico Live é uma ferramenta essencial para qualquer pessoa interessada em acompanhar e entender melhor a dinâmica brasileira. <br><br> Experimente a precisão e a confiabilidade das previsões do Ludiico Live e fique sempre um passo à frente com dados em tempo real.
+        <br>
+        <br>
       </p>
     </div>
     <div v-if="tooltip" class="tooltip">{{ tooltip }}</div>
@@ -95,5 +99,19 @@ h1 {
   background-color: #333;
   color: #fff;
   border-radius: 5px;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .data-source-item {
+    width: 90vw;
+    padding: 1rem;
+    font-size: 1em;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-top: 4rem;
+  }
 }
 </style>
