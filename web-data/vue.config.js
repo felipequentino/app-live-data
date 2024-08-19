@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   pwa: {
-    name: 'Ludiico Live',
+    name: 'Brasilico',
     themeColor: '#003366',
     msTileColor: '#11943f',
     manifestOptions: {

@@ -6,7 +6,7 @@
         @click.stop="drawer = !drawer"
         aria-label="Abrir menu de navegação"
         ></v-app-bar-nav-icon>
-        <v-toolbar-title>Ludiico Live</v-toolbar-title>
+        <v-toolbar-title>Brasilico</v-toolbar-title>
         <v-spacer></v-spacer>
         <img src="@/assets/logo1.webp" alt="Live Data Logo" class="navbar-logo">
       </v-app-bar>
