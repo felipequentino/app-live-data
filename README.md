@@ -1,9 +1,9 @@
-# Ludiico Live
+# Brasilico
 
-Seja bem vindo ao repositório do projeto Ludiico Live!
+Seja bem vindo ao repositório do projeto Brasilico!
 O projeto é fruto de um PIBITI, feito pelo aluno João F. Quentino e pelo orientador Hendrik T. Macedo, ambos da Universidade Federal de Sergipe.
 
-O Ludiico Live é um portal de informações do Brasil em tempo real, onde as exibe com base em previsões feitas a partir de modelos de Séries Temporais. Para saber com mais detalhes como foi feito o processo de previsão dos dados, confira o notebook abaixo:
+O Brasilico é um portal de informações do Brasil em tempo real, onde as exibe com base em previsões feitas a partir de modelos de Séries Temporais. Para saber com mais detalhes como foi feito o processo de previsão dos dados, confira o notebook abaixo:
 
 [Séries Temporais](https://felipequentino.quarto.pub/series-temporais/)
 
@@ -40,4 +40,4 @@ Para a previsão dos dados apresentados, foram utilizados diversos modelos de s�
 
 ## Deploy
 
-O projeto está disponível em: [Ludiico Live](https://ludiico-live.vercel.app/)
+O projeto está disponível em: [Brasilico](https://brasilico.vercel.app/)
