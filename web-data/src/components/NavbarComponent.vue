@@ -2,10 +2,17 @@
   <v-card class="navBarContainer">
     <v-layout>
       <v-app-bar color="#003366" prominent>
+<<<<<<< HEAD
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+=======
+        <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        aria-label="Abrir menu de navegação"
+        ></v-app-bar-nav-icon>
+>>>>>>> b05f3813806e1a25bf40147504c57fcee4abea55
         <v-toolbar-title>Brasilico</v-toolbar-title>
         <v-spacer></v-spacer>
-        <img src="@/assets/logo1.png" alt="Live Data Logo" class="navbar-logo">
+        <img src="@/assets/logo1.webp" alt="Live Data Logo" class="navbar-logo">
       </v-app-bar>
 
       <v-navigation-drawer v-model="drawer" :location="$vuetify.display.mobile ? 'bottom' : undefined" temporary>

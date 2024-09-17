@@ -1,6 +1,6 @@
 <template>
     <footer>
-      <p>&copy; 2024 Ludiico Live. Todos os direitos reservados.</p>
+      <p>&copy; 2024 Brasilico. Todos os direitos reservados.</p>
     </footer>
   </template>
   
