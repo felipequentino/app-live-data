@@ -1,8 +1,13 @@
 import axios from 'axios';
 import Papa from 'papaparse';
 const { DateTime } = require('luxon');
+import DropdownComponent from './DropdownComponent.vue';
+
 
 export default {
+  components: {
+    DropdownComponent
+  },
   data() {
     return {
       populationData: [],

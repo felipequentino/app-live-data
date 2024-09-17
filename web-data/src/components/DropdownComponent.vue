@@ -18,6 +18,7 @@
     <transition name="slide">
       <div class="dropdown-content" v-show="isOpen">
         <p>{{ description }}</p>
+        <canvas v-if="dataArray" ref="chartCanvas"></canvas>
         <strong>Fonte: </strong>
         <a :href="fonte" target="_blank" rel="noopener noreferrer">{{ fonte_description }}</a>
       </div>
@@ -27,11 +28,16 @@
 
   
 <script>
+
+import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
+
+Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
+
 export default {
   name: "DropdownContent",
   props: {
     number: {
-      type: String,
+      type: [String, Number], // Allow both string and number
       required: true
     },
     title: {
@@ -49,6 +55,11 @@ export default {
     fonte_description: {
       type: String,
       required: false
+    },
+    dataArray: {
+      type: Array,
+      required: false,
+      default: null
     }
   },
   data() {
@@ -70,9 +81,75 @@ export default {
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen;
+      if (this.isOpen && !this.chartInstance && this.dataArray) {
+        this.$nextTick(() => {
+          this.createChart();
+        });
+      } else if (!this.isOpen && this.chartInstance) {
+        // Destrói o gráfico quando o dropdown é fechado
+        this.chartInstance.destroy();
+        this.chartInstance = null;
+      }
     },
-    checkMobile() {
-      this.isMobile = window.innerWidth < 768;
+    createChart() {
+        if (!this.dataArray || this.dataArray.length === 0) {
+      return; // Não tenta criar o gráfico se dataArray não existir ou estiver vazio
+    }
+    
+      const ctx = this.$refs.chartCanvas.getContext('2d');
+      const now = new Date();
+      const currentMonthIndex = now.getMonth();
+
+      const labels = this.dataArray.map((_, index) => {
+        return new Date(0, index).toLocaleString('default', { month: 'short' });
+      });
+
+      const pastData = this.dataArray.map((value, index) => index <= currentMonthIndex ? value : null);
+      const futureData = this.dataArray.map((value, index) => index > currentMonthIndex ? value : null);
+
+      this.chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Passado/Atual',
+              data: pastData,
+              borderColor: 'blue',
+              backgroundColor: 'blue',
+              fill: false,
+              tension: 0.1
+            },
+            {
+              label: 'Futuro',
+              data: futureData,
+              borderColor: 'red',
+              backgroundColor: 'red',
+              fill: false,
+              tension: 0.1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Mês'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Valor'
+              },
+              beginAtZero: true
+            }
+          }
+        }
+      });
     }
   }
 };
@@ -132,6 +209,14 @@ export default {
     padding: 10px;
     background-color: #fff;
   }
+
+  .dropdown-content canvas {
+  width: 100%;
+  max-width: 100%;
+  height: 400px;
+  max-height: 400px;
+}
+
   
   /* Definindo a animação de transform */
   @keyframes slide {

@@ -3,7 +3,7 @@
     <v-layout>
       <v-app-bar color="#003366" prominent>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Ludiico Live</v-toolbar-title>
+        <v-toolbar-title>Brasilico</v-toolbar-title>
         <v-spacer></v-spacer>
         <img src="@/assets/logo1.png" alt="Live Data Logo" class="navbar-logo">
       </v-app-bar>

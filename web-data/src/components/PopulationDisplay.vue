@@ -14,6 +14,7 @@
                 description="População - Total"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
                 fonte_description=" SIDRA - IBGE"
+                :dataArray="populationData"
               />
               <br />
               <DropdownContent
@@ -22,6 +23,7 @@
                 description="População de Homens - Total"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
                 fonte_description=" SIDRA - IBGE"
+                :dataArray="populationMenData"
               />
               <br />
               <DropdownContent
@@ -29,7 +31,8 @@
                 title="População de Mulheres"
                 description="População de Mulheres - Total"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
-                fonte_description=" SIDRA - IBGE"                
+                fonte_description=" SIDRA - IBGE"   
+                :dataArray="populationWomenData"             
               />
               <br />
               <DropdownContent
@@ -38,8 +41,9 @@
                 description="Nascidos vivos - Total no ano de 2024"
                 fonte="https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html"
                 fonte_description=" Sistemas de Estatísticas Vitais - IBGE" 
-              />
-              <br />
+                :dataArray="birthsData"
+                />
+                <br />
               <DropdownContent
                 :number="Math.round(birthsToday).toLocaleString('pt-BR')"
                 title="Nascimentos hoje"
@@ -53,7 +57,8 @@
                 title="Mortes esse ano"
                 description="Óbitos - Total no ano de 2024"
                 fonte="https://www.ibge.gov.br/estatisticas/sociais/populacao/9110-estatisticas-do-registro-civil.html"
-                fonte_description=" Sistemas de Estatísticas Vitais - IBGE"                 
+                fonte_description=" Sistemas de Estatísticas Vitais - IBGE"          
+                :dataArray="deathsData"       
               />
               <br />
               <DropdownContent
@@ -76,7 +81,7 @@
                 title="Pessoas empregadas"
                 description="Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
-                fonte_description=" SIDRA - IBGE"                       
+                fonte_description=" SIDRA - IBGE"                  
               />
               <br />
               <DropdownContent
@@ -84,7 +89,8 @@
                 title="Homens empregados"
                 description="Homens de 14 anos ou mais de idade, ocupados na semana de referência"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
-                fonte_description=" SIDRA - IBGE"                      
+                fonte_description=" SIDRA - IBGE"   
+                :dataArray="occupationMenData"                   
               />
               <br />
               <DropdownContent
@@ -92,7 +98,8 @@
                 title="Mulheres empregadas"
                 description="Mulheres de 14 anos ou mais de idade, ocupadas na semana de referência"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
-                fonte_description=" SIDRA - IBGE"                       
+                fonte_description=" SIDRA - IBGE"               
+                :dataArray="occupationWomenData"        
               />
               <br />
               <DropdownContent
@@ -108,7 +115,8 @@
                 title="Homens desempregados"
                 description="Homens de 14 anos ou mais de idade, desocupados na semana de referência"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
-                fonte_description=" SIDRA - IBGE"                       
+                fonte_description=" SIDRA - IBGE"      
+                :dataArray="unemployedMenData"                 
               />
               <br />
               <DropdownContent
@@ -116,7 +124,8 @@
                 title="Mulheres desempregadas"
                 description="Mulheres de 14 anos ou mais de idade, desocupadas na semana de referência"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
-                fonte_description=" SIDRA - IBGE"                       
+                fonte_description=" SIDRA - IBGE"                
+                :dataArray="unemployedWomenData"       
               />
               <br />
             </v-card-text>
@@ -133,6 +142,7 @@
                 description="Total de despesas executadas para a área de atuação Saúde - Esse Ano (2024)"
                 fonte="https://portaldatransparencia.gov.br/funcoes/10-saude?ano=2023"
                 fonte_description=" Portal da Transparência - Governo Federal"
+                :dataArray="healthExpensesData"
               />
               <br />
               <DropdownContent
@@ -141,6 +151,7 @@
                 description="Total de despesas executadas para a área de atuação Educação -  Esse Ano (2024)"
                 fonte="https://portaldatransparencia.gov.br/funcoes/12-educacao?ano=2023"
                 fonte_description=" Portal da Transparência - Governo Federal"
+                :dataArray="educationExpensesData"
               />
               <br />
               <DropdownContent
@@ -149,6 +160,7 @@
                 description="Total de despesas executadas para a área do Ministério da Defesa - DEFESA - Esse Ano (2024)"
                 fonte="https://portaldatransparencia.gov.br/orgaos-superiores/52000-ministerio-da-defesa"
                 fonte_description=" Portal da Transparência - Governo Federal"
+                :dataArray="defenseExpensesData"
               />
               <br />
               <DropdownContent
@@ -157,6 +169,7 @@
                 description="Massa de rendimento real de todos os trabalhos, habitualmente recebido por mês, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho - Esse Ano (2024)"
                 fonte="https://sidra.ibge.gov.br/home/pnadcm/brasil"
                 fonte_description=" SIDRA - IBGE"
+                :dataArray="incomeData"
               />
             </v-card-text>
           </v-card>
@@ -172,6 +185,7 @@
                 description="Veículos Licenciados - Total no ano de 2024"
                 fonte="https://anfavea.com.br/site/edicoes-em-excel/"
                 fonte_description=" Anfavea - Associação Nacional dos Fabricantes de Veículos Automotores"
+                :dataArray="licenciadosNacionaisData"
               />
               <br />
               <DropdownContent
@@ -179,7 +193,8 @@
                 :number="Math.round(currentExportacaoVeiculosChange).toLocaleString('pt-BR')"
                 description="Veículos Exportados - Total no ano de 2024"
                 fonte="https://anfavea.com.br/site/edicoes-em-excel/"
-                fonte_description=" Anfavea - Associação Nacional dos Fabricantes de Veículos Automotores"                
+                fonte_description=" Anfavea - Associação Nacional dos Fabricantes de Veículos Automotores"          
+                :dataArray="exportacaoVeiculosData"      
               />
               <br />
               <DropdownContent
@@ -187,7 +202,8 @@
                 :number="Math.round(currentProducaoVeiculosChange).toLocaleString('pt-BR')"
                 description="Veículos Produzidos - Total no ano de 2024"
                 fonte="https://anfavea.com.br/site/edicoes-em-excel/"
-                fonte_description=" Anfavea - Associação Nacional dos Fabricantes de Veículos Automotores"                
+                fonte_description=" Anfavea - Associação Nacional dos Fabricantes de Veículos Automotores"     
+                :dataArray="producaoVeiculosData"           
               />
             </v-card-text>
           </v-card>
@@ -203,6 +219,7 @@
                 description="Mercado de Telefones Celulares – Total no ano de 2024"
                 fonte="https://www.abinee.org.br/organizacao/decon/dados/setoriais/"
                 fonte_description=" Abinee - Associação Brasileira da Indústria Elétrica e Eletrônica"
+                :dataArray="celularesData"
               />
             </v-card-text>
           </v-card>
