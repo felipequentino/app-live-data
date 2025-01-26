@@ -6,4 +6,6 @@ notebooks/.ipynb_checkpoints
 notebooks/_site
 notebooks/populacao.html
 notebooks/styles.css
+backend/__pycache__
+backend/bot/__pycache__
 
