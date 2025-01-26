@@ -67,16 +67,9 @@ class DataScraper:
         Faz o parsing do CSV de acordo com o tipo de dado ('ibge', 'abinee', etc.)
         e retorna um DataFrame cru, mas com as linhas e colunas de interesse.
         """
+        print("type:", type_data)
         if type_data.lower() == "ibge":
-            # Ler somente as linhas relevantes (no caso da Tabela 6022 do SIDRA):
-            # Observando o CSV, as linhas de cabeçalho (meses) e de dados (Brasil)
-            # geralmente são 2 linhas após pular um certo número de metadados.
             csv_buf = io.StringIO(file_content)
-            
-            # Ajuste skiprows conforme a análise do arquivo (seja 3, 4 ou 5, etc.)
-            # No seu exemplo final, a linha com os meses está no índice 4 (0-based).
-            # A linha com Brasil está no índice 5.
-            # Mas se identificou que skiprows=3 e nrows=2 funcionam, use assim:
             df_raw = pd.read_csv(
                 csv_buf,
                 sep=';',
@@ -88,6 +81,32 @@ class DataScraper:
             )
             return df_raw
         
+        elif type_data.lower() == "ibge_ocupacao":
+            csv_buf = io.StringIO(file_content)
+            df_raw = pd.read_csv(
+                csv_buf,
+                sep=';',
+                quotechar='"',
+                skiprows=3,   # pular 3 (ou 4) linhas iniciais, ver o debug
+                nrows=3,      # ler apenas essas 2
+                header=None,
+                engine='python'
+            )
+            return df_raw
+        
+        elif type_data.lower() == "rendimento":
+            csv_buf = io.StringIO(file_content)
+            df_raw = pd.read_csv(
+                csv_buf,
+                sep=',',
+                quotechar='"',
+                skiprows=3,   # pular 3 (ou 4) linhas iniciais, ver o debug
+                nrows=3,      # ler apenas essas 2
+                header=None,
+                engine='python'
+            )
+            return df_raw   
+    
         # Caso futuro: "abinee"
         elif type_data.lower() == "abinee":
             # Exemplo fictício de leitura:
@@ -103,7 +122,7 @@ class DataScraper:
         Faz a limpeza, conversão e filtragem (mês-ano -> data, retirar colunas inúteis).
         Retorna um DataFrame já pronto.
         """
-        if type_data.lower() == "ibge":
+        if type_data.lower() == "ibge" or type_data.lower() == "rendimento":
             # A 1ª linha lida (row 0) é o cabeçalho; a 2ª (row 1) são os valores
             df_raw.columns = df_raw.iloc[0]
             df_raw = df_raw[1:]  # remove a row 0 do corpo
@@ -126,6 +145,32 @@ class DataScraper:
             
             return df_raw
         
+        elif type_data.lower() == "ibge_ocupacao":
+
+            # Dropa a coluna Total
+            df_raw.drop(index=1, inplace=True)
+            # A 1ª linha lida (row 0) é o cabeçalho; a 2ª (row 1) são os valores
+            df_raw.columns = df_raw.iloc[0]
+            df_raw = df_raw[1:]  # remove a row 0 do corpo
+            df_raw.reset_index(drop=True, inplace=True)
+            
+            # Descartar a primeira coluna, que costuma vir vazia ou com "Brasil"
+            df_raw = df_raw.iloc[:, 1:]
+            
+            # Converter para numérico
+            df_raw = df_raw.apply(pd.to_numeric, errors='coerce')
+            
+            # Renomear colunas ("jan-fev-mar 2020" -> "01/01/2020")
+            novos_nomes = {}
+            for col in df_raw.columns:
+                novos_nomes[col] = self.extrair_data(col)
+            df_raw.rename(columns=novos_nomes, inplace=True)
+            
+            # Ordenar colunas cronologicamente e filtrar a partir de 2020
+            df_raw = self.ordenar_e_filtrar(df_raw, start_year=2020)
+            
+            return df_raw
+
         elif type_data.lower() == "abinee":
             # Exemplo hipotético de limpeza
             # ...
@@ -160,21 +205,34 @@ class DataScraper:
 
     def extrair_data(self, tri_mensal: str) -> str:
         """
-        Converte algo como "jan-fev-mar 2020" -> "01/01/2020".
-        Retorna a string original se não casar o padrão.
+        Converte algo como "jan-fev-mar 2020" -> "01/01/2020"
+        caso "jan" seja mapeado em 1 => "01/01/2020".
+        "fev" => 2 => "02/01/2020", etc.
         """
         tri_mensal = tri_mensal.lower().strip()
+        
+        # Regex para capturar o formato: "abc-abc-abc 2020", e pegar só o 1° "abc" e o ano.
         match = re.search(r"^([a-z]{3})-[a-z]{3}-[a-z]{3}\s+(\d{4})$", tri_mensal)
         if not match:
-            return tri_mensal  # ou "" se preferir
-        
-        mes_abrev = match.group(1)
+            return tri_mensal  # se não casou, devolve como está (ou "")
+
+        # 'jan', 'fev', 'mar' etc. do primeiro bloco
+        mes_abrev = match.group(1)  
         ano = match.group(2)
+        
+        # Mapeamos a abreviação pro número (1..12)
         mes_num = self.mes_map.get(mes_abrev)
         if mes_num is None:
             return tri_mensal
+
+        # ATENÇÃO: Agora interpretamos "mes_num" como se fosse o DIA,
+        # e fixamos '01' como mês (janeiro).
+        dia = mes_num  # 1 p/ jan, 2 p/ fev, ...
+        mes_fixo = 1   # queremos /01/ como mês
         
-        return f"01/{mes_num:02d}/{ano}"
+        # dd/mm/aaaa => "dia/01/ano", com zero-padding
+        return f"{dia:02d}/{mes_fixo:02d}/{ano}"
+
 
     def ordenar_e_filtrar(self, df: pd.DataFrame, start_year=2020) -> pd.DataFrame:
         """
@@ -200,7 +258,7 @@ class DataScraper:
 # ------------------------------------------------------------------------------
 # Exemplo de uso da classe:
 # ------------------------------------------------------------------------------
-if __name__ == "__main__":
+""" if __name__ == "__main__":
     # Parâmetros de exemplo:
     in_path = (
         "https://sidra.ibge.gov.br/geratabela?"
@@ -213,3 +271,4 @@ if __name__ == "__main__":
     # Instancia e executa o 'robô'
     scraper = DataScraper(in_path, out_path, type_data)
     scraper.run()
+ """
