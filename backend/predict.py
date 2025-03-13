@@ -3,7 +3,6 @@ from sktime.split import temporal_train_test_split
 from sktime.forecasting.arima import AutoARIMA
 from sktime.forecasting.sarimax import SARIMAX
 from datetime import datetime
-from django.db import models
 from utils import segundos_passados_no_mes, dias_no_mes
 import pandas as pd
 import numpy as np
