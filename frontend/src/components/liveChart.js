@@ -213,7 +213,9 @@ export default {
       }
     },
     populateData(data, dataKey) {
-      this[dataKey] = data.map(row => parseFloat(row.populacao));
+      this[dataKey] = data
+        .map(row => parseFloat(row.populacao))
+        .filter(value => !isNaN(value));
     },
     startChangeCalculation(dataKey, changeKey, intervalKey) {
       if (this[dataKey].length < 2) {
@@ -238,7 +240,10 @@ export default {
     },
     calculateMonthlyChange(dataKey, currentMonthIndex) {
       if (currentMonthIndex >= this[dataKey].length - 1) {
-        console.error('Not enough data to calculate monthly change for the current month.');
+        // No next month data available, use previous month's change rate as estimate
+        if (currentMonthIndex >= 1) {
+          return this[dataKey][currentMonthIndex] - this[dataKey][currentMonthIndex - 1];
+        }
         return 0;
       }
       return this[dataKey][currentMonthIndex + 1] - this[dataKey][currentMonthIndex];
