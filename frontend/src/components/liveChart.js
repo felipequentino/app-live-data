@@ -197,8 +197,9 @@ export default {
         const csvData = response.data;
         Papa.parse(csvData, {
           header: true,
+          skipEmptyLines: true,
           complete: (result) => {
-            this.populateData(result.data, dataKey);
+            this.populateDataWithDates(result.data, dataKey);
             this.startChangeCalculation(dataKey, changeKey, intervalKey);
             if (dataKey === 'deathsData') {
               this.calculateDeathsToday(dataKey);
@@ -212,35 +213,111 @@ export default {
         console.error('Error loading CSV data:', error);
       }
     },
-    populateData(data, dataKey) {
-      this[dataKey] = data
-        .map(row => parseFloat(row.populacao))
-        .filter(value => !isNaN(value));
+    populateDataWithDates(data, dataKey) {
+      // Armazena dados com suas datas para busca correta
+      const dataWithDates = [];
+      
+      for (const row of data) {
+        // Tenta obter o valor - pode estar em 'populacao' ou na segunda coluna
+        let value = parseFloat(row.populacao);
+        
+        // Fallback: tenta pegar o segundo valor do objeto (coluna de valor)
+        if (isNaN(value)) {
+          const values = Object.values(row);
+          for (const v of values) {
+            const parsed = parseFloat(v);
+            if (!isNaN(parsed) && parsed > 100) { // Valor numérico significativo
+              value = parsed;
+              break;
+            }
+          }
+        }
+        
+        // Tenta obter a data - pode estar na primeira coluna (índice vazio)
+        let dateStr = row[''] || Object.values(row)[0];
+        
+        if (!isNaN(value) && dateStr && typeof dateStr === 'string' && dateStr.match(/^\d{4}-\d{2}/)) {
+          const [year, month] = dateStr.split('-').map(Number);
+          dataWithDates.push({ year, month, value });
+        }
+      }
+      
+      // Ordena por data
+      dataWithDates.sort((a, b) => (a.year * 12 + a.month) - (b.year * 12 + b.month));
+      
+      // Armazena tanto os valores quanto os metadados
+      this[dataKey] = dataWithDates.map(d => d.value);
+      this[dataKey + 'Meta'] = dataWithDates;
+    },
+    findDataForCurrentMonth(dataKey) {
+      const meta = this[dataKey + 'Meta'];
+      if (!meta || meta.length === 0) {
+        return { currentValue: null, nextValue: null, prevValue: null };
+      }
+      
+      const now = DateTime.now().setZone('America/Sao_Paulo');
+      const currentYear = now.year;
+      const currentMonth = now.month;
+      
+      // Busca o mês atual nos dados
+      let currentIdx = meta.findIndex(d => d.year === currentYear && d.month === currentMonth);
+      
+      // Fallback: se não encontrar o mês atual, usa o último disponível
+      if (currentIdx === -1) {
+        // Tenta encontrar o mês mais próximo anterior
+        for (let i = meta.length - 1; i >= 0; i--) {
+          const d = meta[i];
+          if (d.year < currentYear || (d.year === currentYear && d.month <= currentMonth)) {
+            currentIdx = i;
+            break;
+          }
+        }
+        // Se ainda não encontrou, usa o primeiro disponível
+        if (currentIdx === -1) {
+          currentIdx = 0;
+        }
+      }
+      
+      return {
+        currentValue: meta[currentIdx]?.value ?? null,
+        nextValue: meta[currentIdx + 1]?.value ?? null,
+        prevValue: currentIdx > 0 ? meta[currentIdx - 1]?.value : null,
+        currentIdx
+      };
     },
     startChangeCalculation(dataKey, changeKey, intervalKey) {
-      if (this[dataKey].length < 2) {
-        console.error('Not enough data to calculate change.');
+      const { currentValue, nextValue, prevValue } = this.findDataForCurrentMonth(dataKey);
+      
+      if (currentValue === null) {
+        console.error(`No valid data found for ${dataKey}`);
         return;
       }
-    
+      
       const now = DateTime.now().setZone('America/Sao_Paulo');
-      const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
-      const initialData = this[dataKey][currentMonthIndex];
-      const monthlyChange = this.calculateMonthlyChange(dataKey, currentMonthIndex);
+      
+      // Calcula a mudança mensal
+      let monthlyChange = 0;
+      if (nextValue !== null) {
+        monthlyChange = nextValue - currentValue;
+      } else if (prevValue !== null) {
+        // Fallback: usa a taxa do mês anterior
+        monthlyChange = currentValue - prevValue;
+      }
+      
       const predictPerSecond = this.calculatePredictPerSecond(monthlyChange, now);
     
-      // Intervalo de 0,2 segundos
-      const updateInterval = 0.1; // em segundos
+      // Intervalo de 0,1 segundos
+      const updateInterval = 0.1;
       const predictPerUpdate = predictPerSecond * updateInterval;
     
-      this.updateCurrentChange(initialData, predictPerSecond, changeKey, now);
+      this.updateCurrentChange(currentValue, predictPerSecond, changeKey, now);
       this[intervalKey] = setInterval(() => {
         this[changeKey] += predictPerUpdate;
-      }, updateInterval * 1000); // Convertendo para milissegundos
+      }, updateInterval * 1000);
     },
     calculateMonthlyChange(dataKey, currentMonthIndex) {
+      // Método mantido para compatibilidade, mas não é mais usado
       if (currentMonthIndex >= this[dataKey].length - 1) {
-        // No next month data available, use previous month's change rate as estimate
         if (currentMonthIndex >= 1) {
           return this[dataKey][currentMonthIndex] - this[dataKey][currentMonthIndex - 1];
         }
@@ -267,9 +344,14 @@ export default {
 
     calculateDeathsToday(dataKey) {
       const now = DateTime.now().setZone('America/Sao_Paulo');
-      const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
       const daysInCurrentMonth = now.daysInMonth;
-      const deathsMonth = this[dataKey][currentMonthIndex];
+      
+      const { currentValue } = this.findDataForCurrentMonth(dataKey);
+      if (currentValue === null) {
+        return;
+      }
+      
+      const deathsMonth = currentValue;
       const deathsToday = deathsMonth / daysInCurrentMonth;
       const secondsElapsedThisYear = now.diff(now.startOf('year'), 'seconds').seconds;
 
@@ -295,9 +377,14 @@ export default {
 
     calculateBirthsToday(dataKey) {
       const now = DateTime.now().setZone('America/Sao_Paulo');
-      const currentMonthIndex = now.month - 1; // Luxon months are 1-12, need 0-11
       const daysInCurrentMonth = now.daysInMonth;
-      const birthsMonth = this[dataKey][currentMonthIndex];
+      
+      const { currentValue } = this.findDataForCurrentMonth(dataKey);
+      if (currentValue === null) {
+        return;
+      }
+      
+      const birthsMonth = currentValue;
       const birthsToday = birthsMonth / daysInCurrentMonth;
       const secondsElapsedThisYear = now.diff(now.startOf('year'), 'seconds').seconds;
 
